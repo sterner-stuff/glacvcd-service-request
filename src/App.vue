@@ -2,6 +2,8 @@
 	<div id="app">
 		<img alt="Vue logo" src="./assets/logo.png" />
 		<form
+			ref="form"
+            :id="form_id"
 			class="kwes-form"
 			action="https://kwes.io/api/foreign/forms/tKYcmMgyhd7a7R2fq6Xw"
 			multistep
@@ -150,7 +152,7 @@
 				<Step heading="Service Request Type">
 					<!-- <b-form-group data-kw-group
 						rules="not_regex:/^(Bees|Rodents)/"> -->
-                    <b-form-group data-kw-group>
+					<b-form-group data-kw-group>
 						<b-form-radio-group
 							id="service-request-type"
 							name="service_request_type"
@@ -160,7 +162,9 @@
 							<div
 								class="row row-cols-1 row-cols-md-2 row-cols-xl-4 align-items-stretch"
 							>
-								<div class="col mt-4 d-flex flex-column justify-content-stretch">
+								<div
+									class="col mt-4 d-flex flex-column justify-content-stretch"
+								>
 									<image-radio-button
 										value="Mosquitoes"
 										src="images/mosquitoes.jpg"
@@ -170,7 +174,9 @@
 										"
 									></image-radio-button>
 								</div>
-								<div class="col mt-4 d-flex flex-column justify-content-stretch">
+								<div
+									class="col mt-4 d-flex flex-column justify-content-stretch"
+								>
 									<image-radio-button
 										value="Black Flies"
 										src="images/black-flies.jpg"
@@ -180,7 +186,9 @@
 										"
 									></image-radio-button>
 								</div>
-								<div class="col mt-4 d-flex flex-column justify-content-stretch">
+								<div
+									class="col mt-4 d-flex flex-column justify-content-stretch"
+								>
 									<image-radio-button
 										value="Midges"
 										src="images/midges.jpg"
@@ -190,7 +198,9 @@
 										"
 									></image-radio-button>
 								</div>
-								<div class="col mt-4 d-flex flex-column justify-content-stretch">
+								<div
+									class="col mt-4 d-flex flex-column justify-content-stretch"
+								>
 									<image-radio-button
 										value="Mosquitofish Request"
 										src="images/mosquitofish.jpg"
@@ -200,7 +210,9 @@
 										"
 									></image-radio-button>
 								</div>
-								<div class="col mt-4 d-flex flex-column justify-content-stretch">
+								<div
+									class="col mt-4 d-flex flex-column justify-content-stretch"
+								>
 									<image-radio-button
 										value="Standing Water"
 										src="images/standing-water.jpg"
@@ -210,7 +222,9 @@
 										"
 									></image-radio-button>
 								</div>
-								<div class="col mt-4 d-flex flex-column justify-content-stretch">
+								<div
+									class="col mt-4 d-flex flex-column justify-content-stretch"
+								>
 									<image-radio-button
 										value="Neglected Pool"
 										src="images/neglected-pool.jpg"
@@ -220,7 +234,9 @@
 										"
 									></image-radio-button>
 								</div>
-								<div class="col mt-4 d-flex flex-column justify-content-stretch">
+								<div
+									class="col mt-4 d-flex flex-column justify-content-stretch"
+								>
 									<image-radio-button
 										value="Other"
 										src="images/other.jpg"
@@ -229,7 +245,9 @@
 										"
 									></image-radio-button>
 								</div>
-								<div class="col mt-4 d-flex flex-column justify-content-stretch">
+								<div
+									class="col mt-4 d-flex flex-column justify-content-stretch"
+								>
 									<image-radio-button
 										value="Bees or Wasps"
 										src="images/bees.jpg"
@@ -240,7 +258,9 @@
 										"
 									></image-radio-button>
 								</div>
-								<div class="col mt-4 d-flex flex-column justify-content-stretch">
+								<div
+									class="col mt-4 d-flex flex-column justify-content-stretch"
+								>
 									<image-radio-button
 										value="Rodents"
 										src="images/rodents.jpg"
@@ -251,7 +271,9 @@
 										"
 									></image-radio-button>
 								</div>
-								<div class="col mt-4 d-flex flex-column justify-content-stretch">
+								<div
+									class="col mt-4 d-flex flex-column justify-content-stretch"
+								>
 									<image-radio-button
 										value="Fire Ants, Cockroaches, or Flies"
 										src="images/ants.png"
@@ -345,22 +367,147 @@
 									</div>
 								</div>
 							</alert>
+							<alert
+								v-show="
+									form.service_request_type == 'Bees or Wasps'
+								"
+								class="mt-4"
+								variant="danger"
+							>
+								<div class="row">
+									<div class="col">
+										<p>
+											GLACVCD does not respond to bees.
+											You should contact a private pest
+											control company, or the
+											<a
+												href="https://acwm.lacounty.gov/bees-in-our-environment/"
+												target="_blank"
+												>LA County Agricultural
+												Commissioner of Weights and
+												Measures</a
+											>
+											at (626) 575-5471 or their Bee
+											Hotline at 1-800-BEE-WARY
+											(1-800-233-9279)
+										</p>
+									</div>
+								</div>
+							</alert>
+							<alert
+								v-show="form.service_request_type == 'Rodents'"
+								class="mt-4"
+								variant="danger"
+							>
+								<div class="row">
+									<div class="col">
+										<p>
+											GLACVCD does not respond to rodents.
+											Instead, contact the
+											<a
+												href="LA County Department of Health Services, Vector Management Programhttp://www.publichealth.lacounty.gov/eh/SSE/Vector_Management/vmvcontrol.htm"
+												>LA County Department of Health
+												Services, Vector Management
+												Program</a
+											>
+											at (626) 430-5461
+										</p>
+									</div>
+								</div>
+							</alert>
+							<alert
+								v-show="
+									form.service_request_type ==
+										'Fire Ants, Cockroaches, or Flies'
+								"
+								class="mt-4"
+								variant="danger"
+							>
+								<div class="row">
+									<div class="col">
+										<p>
+											GLACVCD does not respond to
+											cockroaches, fire ants, or
+											run-of-the-mill houseflies. You
+											should contact private pest control.
+										</p>
+									</div>
+								</div>
+							</alert>
 						</b-form-radio-group>
 					</b-form-group>
-                    <input-group label="When are mosquito bites occurring?">
-                        <b-form-checkbox-group
-                            name="when_are_bites_occurring"
-                            v-model="form.when_are_bites_occurring"
-                            :options="when_are_bites_occurring_options"
-                            stacked
-                        ></b-form-checkbox-group>
-                    </input-group>
-                    <input-group label="Additional details about the situation">
-                        <b-form-textarea
-                            name="additional_details"
-                            v-model="form.additional_details"
-                        ></b-form-textarea>
-                    </input-group>
+					<input-group label="When are mosquito bites occurring?">
+						<b-form-checkbox-group
+							name="when_are_bites_occurring"
+							v-model="form.when_are_bites_occurring"
+							:options="when_are_bites_occurring_options"
+							stacked
+						></b-form-checkbox-group>
+					</input-group>
+					<input-group label="Additional details about the situation">
+						<b-form-textarea
+							name="additional_details"
+							v-model="form.additional_details"
+						></b-form-textarea>
+					</input-group>
+				</Step>
+				<Step heading="Contact Information">
+					<input-group label="Case Number">
+						<b-form-input
+							name="case_number"
+							v-model="form.case_number"
+						></b-form-input>
+						<b-form-text>If you've been assigned one</b-form-text>
+					</input-group>
+					<input-group label="Name">
+						<b-form-input
+							name="name"
+							v-model="form.name"
+						></b-form-input>
+					</input-group>
+					<input-group label="Company">
+						<b-form-input
+							name="company"
+							v-model="form.company"
+						></b-form-input>
+					</input-group>
+					<input-group label="Email">
+						<b-form-input
+							name="email"
+							v-model="form.email"
+							type="email"
+						></b-form-input>
+					</input-group>
+					<input-group label="Phone">
+						<b-form-input
+							name="phone"
+							v-model="form.phone"
+							type="tel"
+						></b-form-input>
+					</input-group>
+					<input-group label="How did you hear about us?">
+						<b-form-checkbox-group
+							name="how_did_you_hear_about_us"
+							v-model="form.how_did_you_hear_about_us"
+							:options="how_did_you_hear_options"
+							stacked
+							style="column-count:2"
+						></b-form-checkbox-group>
+					</input-group>
+					<input-group
+						label="How did you hear about us (other)?"
+						v-show="
+							form.how_did_you_hear_about_us.includes('Other')
+						"
+					>
+						<b-form-input
+							name="how_did_you_hear_other"
+							v-model="form.how_did_you_hear_other"
+						></b-form-input>
+					</input-group>
+					<input-group label="Address to report">
+						<address-verifier ref="address_verifier"></address-verifier>
+					</input-group>
 				</Step>
 				<Step heading="Last">
 					<input
@@ -378,9 +525,10 @@
 <script>
 import Step from "./components/Kwes/Step.vue";
 import Alert from "./components/Alert.vue";
-import InputGroup from './components/Form/InputGroup.vue';
+import InputGroup from "./components/Form/InputGroup.vue";
 import ImageRadioButton from "./components/Form/ImageRadioButton.vue";
 import kwesforms from "kwesforms";
+import AddressVerifier from "./components/Form/AddressVerifier.vue";
 
 export default {
 	name: "App",
@@ -388,24 +536,75 @@ export default {
 		Alert,
 		Step,
 		ImageRadioButton,
-        InputGroup,
+		InputGroup,
+		AddressVerifier,
 	},
 	data() {
 		return {
+            form_id: 'glacvcd-form',
 			form: {
 				service_request_type: false,
-                when_are_bites_occurring: [],
-                additional_details: '',
+				when_are_bites_occurring: [],
+				additional_details: "",
+				case_number: "",
+				name: "",
+				company: "",
+				email: "",
+				phone: "",
+				how_did_you_hear_about_us: [],
 			},
-            when_are_bites_occurring_options: [
-                'Night',
-                'Day/Afternoon',
-                'Not getting bites',
-            ]
+			when_are_bites_occurring_options: [
+				"Night",
+				"Day/Afternoon",
+				"Not getting bites",
+			],
+			how_did_you_hear_options: [
+				"From prior experience",
+				"Word of mouth",
+				"Google search",
+				"Heard/read in news",
+				"Nextdoor",
+				"Social media",
+				"Community event",
+				"Advertisement",
+				"Other",
+			],
 		};
 	},
 	mounted() {
-		kwesforms.init();
+		console.log(kwesforms.init());
+        setTimeout(() => {
+            kwesforms.setCustomRule(
+                this.form_id,
+                'address_json',
+                'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
+                value => {
+                    return value == 'vague' || value == 'outside';
+                }
+            );
+        }, 1);
+
+		this.$refs.form.addEventListener("kwMultistepNextClicked", () => {
+			/**
+			 * bubbles: false
+				cancelBubble: false
+				cancelable: false
+				composed: false
+				currentTarget: null
+				defaultPrevented: false
+				detail: Object { cancelSubmitEvents: false }
+				eventPhase: 0
+				explicitOriginalTarget: <button class="kw-multistep-button kw-multistep-button-next" type="button">
+				isTrusted: false
+				originalTarget: <form class="kwes-form" action="https://kwes.io/api/fore...rms/tKYcmMgyhd7a7R2fq6Xw" multistep="" method="post" novalidate="novalidate">
+				returnValue: true
+                srcElement: <form>
+                target: <form>
+				timeStamp: 180320
+				type: "kwMultistepNextClicked"
+			 */
+			this.$refs.address_verifier.refresh();
+		});
 	},
 };
 </script>
