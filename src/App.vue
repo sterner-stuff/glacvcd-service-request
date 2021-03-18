@@ -3,6 +3,7 @@
 		<img alt="Vue logo" src="./assets/logo.png" />
 		<form
 			ref="form"
+            enctype="multipart/form-data"
 			:id="form_id"
 			class="kwes-form"
 			action="https://kwes.io/api/foreign/forms/tKYcmMgyhd7a7R2fq6Xw"
@@ -552,15 +553,23 @@
 						></b-form-radio-group>
 					</input-group>
 				</Step>
-				<Step heading="Last">
-					<input
-						type="hidden"
-						name="Pitter-Patter"
-						value="Let's get at 'er"
-					/>
-				</Step>
+                <Step heading="Images">
+                    <input-group label="Upload helpful images (optional)">
+						<b-form-file
+							name="images"
+							v-model="form.images"
+                            placeholder="Select files"
+                            rules="image|max:4000"
+                            multiple
+						></b-form-file>
+                        <b-form-text>Limit 2 images, 4MB each</b-form-text>
+					</input-group>
+                </Step>
+				<Step heading="Review & Submit">
+					<p>Greater Los Angeles County Vector Control Technicians conduct site inspections on weekdays between 7am & 3pm during the regular mosquito season. Best efforts will be made to accommodate the property owner's availability but it is not guaranteed during the season. Inspections may be conducted when resident/owner is not present only with pre-authorization and scheduled appointment.</p>
+                    <p> Your privacy matters to us. The District considers all reports and requests for service confidential, and will not disclose the requests unless California law requires such disclosure. Your information will not be sold or shared with other parties.</p>
+                </Step>
 			</div>
-			<button type="submit">Submit</button>
 		</form>
 	</div>
 </template>
@@ -600,6 +609,7 @@ export default {
 				nearest_cross_street: '',
 				do_you_live_here: null,
 				do_you_have_chickens: null,
+                images: [],
 			},
 			when_are_bites_occurring_options: [
 				"Night",
@@ -620,7 +630,7 @@ export default {
 		};
 	},
 	mounted() {
-		console.log(kwesforms.init());
+		kwesforms.init();
 		setTimeout(() => {
 			kwesforms.setCustomRule(
 				this.form_id,
@@ -672,5 +682,12 @@ export default {
 
 .alert-transparent {
 	@include alert-variant(transparent, theme-color("primary"), $body-color);
+}
+
+.kw-multistep-button {
+    @extend .btn;
+    &.kw-multistep-button-submit, &.kw-multistep-button-next {
+        @extend .btn-primary;
+    }
 }
 </style>
