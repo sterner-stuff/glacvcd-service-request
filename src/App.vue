@@ -3,7 +3,7 @@
 		<img alt="Vue logo" src="./assets/logo.png" />
 		<form
 			ref="form"
-            :id="form_id"
+			:id="form_id"
 			class="kwes-form"
 			action="https://kwes.io/api/foreign/forms/tKYcmMgyhd7a7R2fq6Xw"
 			multistep
@@ -506,7 +506,50 @@
 						></b-form-input>
 					</input-group>
 					<input-group label="Address to report">
-						<address-verifier ref="address_verifier"></address-verifier>
+						<address-verifier
+							ref="address_verifier"
+						></address-verifier>
+					</input-group>
+					<input-group label="Additional building info">
+						<b-form-input
+							name="additional_building_info"
+							v-model="form.additional_building_info"
+						></b-form-input>
+						<b-form-text
+							>Building, apartment, or suite number,
+							etc.</b-form-text
+						>
+					</input-group>
+					<input-group label="Property Access Information ">
+						<b-form-input
+							name="property_access_information"
+							v-model="form.property_access_information"
+						></b-form-input>
+						<b-form-text
+							>Gate codes, entry codes, etc.</b-form-text
+						>
+					</input-group>
+					<input-group label="Nearest cross street">
+						<b-form-input
+							name="nearest_cross_street"
+							v-model="form.nearest_cross_street"
+						></b-form-input>
+					</input-group>
+					<input-group label="Do you live at this address?">
+						<b-form-radio-group
+							name="do_you_live_here"
+							v-model="form.do_you_live_here"
+							:options="[ {text: 'Yes', value: true}, {text: 'No', value: false}, ]"
+							stacked
+						></b-form-radio-group>
+					</input-group>
+					<input-group label="Do you have chickens in your yard?">
+						<b-form-radio-group
+							name="do_you_have_chickens"
+							v-model="form.do_you_have_chickens"
+							:options="[ {text: 'Yes', value: true}, {text: 'No', value: false}, ]"
+							stacked
+						></b-form-radio-group>
 					</input-group>
 				</Step>
 				<Step heading="Last">
@@ -541,7 +584,7 @@ export default {
 	},
 	data() {
 		return {
-            form_id: 'glacvcd-form',
+			form_id: "glacvcd-form",
 			form: {
 				service_request_type: false,
 				when_are_bites_occurring: [],
@@ -552,6 +595,11 @@ export default {
 				email: "",
 				phone: "",
 				how_did_you_hear_about_us: [],
+				additional_building_info: '',
+				property_access_information: '',
+				nearest_cross_street: '',
+				do_you_live_here: null,
+				do_you_have_chickens: null,
 			},
 			when_are_bites_occurring_options: [
 				"Night",
@@ -573,16 +621,16 @@ export default {
 	},
 	mounted() {
 		console.log(kwesforms.init());
-        setTimeout(() => {
-            kwesforms.setCustomRule(
-                this.form_id,
-                'address_json',
-                'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
-                value => {
-                    return value == 'vague' || value == 'outside';
-                }
-            );
-        }, 1);
+		setTimeout(() => {
+			kwesforms.setCustomRule(
+				this.form_id,
+				"address_json",
+				'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
+				(value) => {
+					return value == "vague" || value == "outside";
+				}
+			);
+		}, 1);
 
 		this.$refs.form.addEventListener("kwMultistepNextClicked", () => {
 			/**
@@ -598,8 +646,8 @@ export default {
 				isTrusted: false
 				originalTarget: <form class="kwes-form" action="https://kwes.io/api/fore...rms/tKYcmMgyhd7a7R2fq6Xw" multistep="" method="post" novalidate="novalidate">
 				returnValue: true
-                srcElement: <form>
-                target: <form>
+				srcElement: <form>
+				target: <form>
 				timeStamp: 180320
 				type: "kwMultistepNextClicked"
 			 */
