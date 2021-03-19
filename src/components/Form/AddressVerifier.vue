@@ -1,10 +1,12 @@
 <template>
 	<div>
-		<input type="text"
+		<input
+			type="text"
 			style="position:absolute;left:-9999px;"
-			name="address_json"
-			ref="address_json"
-			:value="this.value">
+			name="map_status"
+			ref="map_status"
+			:value="this.map_status"
+		/>
 
 		<input
 			class="pac-input form-control"
@@ -13,7 +15,7 @@
 			type="text"
 			aria-invalid="false"
 			ref="address"
-            v-model="pretty_address"
+			v-model="pretty_address"
 		/>
 		<div ref="map" class="map" style="margin-top:1em;"></div>
 	</div>
@@ -21,6 +23,7 @@
 <script>
 import gmapsInit from "../../utils/google-maps";
 import zones from "../../assets/data/zones.json";
+import { isEmpty } from "lodash";
 
 export default {
 	async mounted() {
@@ -36,11 +39,18 @@ export default {
 			autocomplete: false,
 			zones: zones,
 			polygons: {},
-			icon: 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png',
+			icon:
+				"https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png",
 			valid: false,
-			value: false,
-            pretty_address: '',
+			pretty_address: "",
+			map_status: "",
 		};
+	},
+	props: {
+		value: {
+			type: Object,
+			default: () => {},
+		},
 	},
 	methods: {
 		initAutocomplete() {
@@ -71,16 +81,21 @@ export default {
 				"formatted_address",
 			]);
 
-			this.autocomplete.addListener('place_changed', () => {
+			this.autocomplete.addListener("place_changed", () => {
 				let place = this.autocomplete.getPlace();
 				this.updateMapPlace(place);
 				this.validatePlace(place);
-			})
+			});
+
+			if(!isEmpty(this.value)) {
+				this.updateMapPlace(this.value);
+				this.validatePlace(this.value);
+			}
 		},
 
 		updateMapPlace(place) {
-			if(typeof place.geometry == 'undefined') return;
-		
+			if (typeof place.geometry == "undefined") return;
+
 			let bounds = new this.google.maps.LatLngBounds();
 			this.marker = new this.google.maps.Marker({
 				map: this.map,
@@ -89,47 +104,53 @@ export default {
 				draggable: false,
 			});
 
-			if(place.geometry.viewport) {
+			if (place.geometry.viewport) {
 				bounds.union(place.geometry.viewport);
 			} else {
 				bounds.extend(place.geometry.viewport);
 			}
 
+			this.pretty_address = place.formatted_address;
 			this.map.fitBounds(bounds);
 			this.map.setZoom(15);
 		},
 
 		validatePlace(place) {
-			let inBoundaries = false, specificEnough = false;
+			let inBoundaries = false,
+				specificEnough = false;
 
-			if(place && place.geometry) {
-				for(var polygon in this.polygons) {
-					if(this.google.maps.geometry.poly.containsLocation(
-						place.geometry.location,
-						this.polygons[polygon]
-					)) {
+			if (place && place.geometry) {
+				for (var polygon in this.polygons) {
+					if (
+						this.google.maps.geometry.poly.containsLocation(
+							place.geometry.location,
+							this.polygons[polygon]
+						)
+					) {
 						inBoundaries = true;
 						break;
 					}
 				}
 
-				if(place.address_components[0].types[0] == 'street_number') {
+				if (place.address_components[0].types[0] == "street_number") {
 					specificEnough = true;
 				}
 			}
 
 			this.valid = inBoundaries && specificEnough;
-			if(this.valid) {
-				this.value = JSON.stringify(place);
-			} else if(!specificEnough) {
-				this.value = 'vague';
-			} else if(!inBoundaries) {
-				this.value = 'outside';
+			if (this.valid) {
+				this.map_status = "valid";
+			} else if (!specificEnough) {
+				this.map_status = "vague";
+			} else if (!inBoundaries) {
+				this.map_status = "outside";
 			}
 
+			this.$emit("input", place);
+
 			this.$nextTick(() => {
-				this.$refs.address_json.focus();
-				this.$refs.address_json.blur();
+				this.$refs.map_status.focus();
+				this.$refs.map_status.blur();
 			});
 		},
 

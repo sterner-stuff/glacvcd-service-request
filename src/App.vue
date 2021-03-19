@@ -3,11 +3,12 @@
 		<img alt="Vue logo" src="./assets/logo.png" />
 		<form
 			ref="form"
-            enctype="multipart/form-data"
+			enctype="multipart/form-data"
 			:id="form_id"
 			class="kwes-form"
 			action="https://kwes.io/api/foreign/forms/tKYcmMgyhd7a7R2fq6Xw"
 			multistep
+			no-reload
 		>
 			<div class="kw-multistep">
 				<Step heading="Intro">
@@ -159,137 +160,97 @@
 							name="WaterSource"
 							v-model="form.WaterSource"
 							stacked
+							goofy="maybe"
 						>
 							<div
-								class="row row-cols-1 row-cols-md-2 row-cols-xl-4 align-items-stretch"
+								class="row row-cols-1 row-cols-md-2 row-cols-xl-4 align-content-stretch"
 							>
 								<div
-									class="col mt-4 d-flex flex-column justify-content-stretch"
+									class="col mt-4 d-flex flex-column"
 								>
 									<image-radio-button
 										value="Mosquitoes"
 										src="images/mosquitoes.jpg"
-										:selected="
-											'Mosquitoes' ==
-												form.WaterSource
-										"
 									></image-radio-button>
 								</div>
 								<div
-									class="col mt-4 d-flex flex-column justify-content-stretch"
+									class="col mt-4 d-flex flex-column"
 								>
 									<image-radio-button
 										value="Black Flies"
 										src="images/black-flies.jpg"
-										:selected="
-											'Black Flies' ==
-												form.WaterSource
-										"
 									></image-radio-button>
 								</div>
 								<div
-									class="col mt-4 d-flex flex-column justify-content-stretch"
+									class="col mt-4 d-flex flex-column"
 								>
 									<image-radio-button
 										value="Midges"
 										src="images/midges.jpg"
-										:selected="
-											'Midges' ==
-												form.WaterSource
-										"
 									></image-radio-button>
 								</div>
 								<div
-									class="col mt-4 d-flex flex-column justify-content-stretch"
+									class="col mt-4 d-flex flex-column"
 								>
 									<image-radio-button
 										value="Mosquitofish Request"
 										src="images/mosquitofish.jpg"
-										:selected="
-											'Mosquitofish Request' ==
-												form.WaterSource
-										"
 									></image-radio-button>
 								</div>
 								<div
-									class="col mt-4 d-flex flex-column justify-content-stretch"
+									class="col mt-4 d-flex flex-column"
 								>
 									<image-radio-button
 										value="Standing Water"
 										src="images/standing-water.jpg"
-										:selected="
-											'Standing Water' ==
-												form.WaterSource
-										"
 									></image-radio-button>
 								</div>
 								<div
-									class="col mt-4 d-flex flex-column justify-content-stretch"
+									class="col mt-4 d-flex flex-column"
 								>
 									<image-radio-button
 										value="Neglected Pool"
 										src="images/neglected-pool.jpg"
-										:selected="
-											'Neglected Pool' ==
-												form.WaterSource
-										"
 									></image-radio-button>
 								</div>
 								<div
-									class="col mt-4 d-flex flex-column justify-content-stretch"
+									class="col mt-4 d-flex flex-column"
 								>
 									<image-radio-button
 										value="Other"
 										src="images/other.jpg"
-										:selected="
-											'Other' == form.WaterSource
-										"
 									></image-radio-button>
 								</div>
 								<div
-									class="col mt-4 d-flex flex-column justify-content-stretch"
+									class="col mt-4 d-flex flex-column"
 								>
 									<image-radio-button
 										value="Bees or Wasps"
 										src="images/bees.jpg"
 										invalid
-										:selected="
-											'Bees or Wasps' ==
-												form.WaterSource
-										"
 									></image-radio-button>
 								</div>
 								<div
-									class="col mt-4 d-flex flex-column justify-content-stretch"
+									class="col mt-4 d-flex flex-column"
 								>
 									<image-radio-button
 										value="Rodents"
 										src="images/rodents.jpg"
 										invalid
-										:selected="
-											'Rodents' ==
-												form.WaterSource
-										"
 									></image-radio-button>
 								</div>
 								<div
-									class="col mt-4 d-flex flex-column justify-content-stretch"
+									class="col mt-4 d-flex flex-column"
 								>
 									<image-radio-button
 										value="Fire Ants, Cockroaches, or Flies"
 										src="images/ants.png"
 										invalid
-										:selected="
-											'Fire Ants, Cockroaches, or Flies' ==
-												form.WaterSource
-										"
 									></image-radio-button>
 								</div>
 							</div>
 							<alert
-								v-show="
-									form.WaterSource == 'Mosquitoes'
-								"
+								v-show="form.WaterSource == 'Mosquitoes'"
 								class="mt-4"
 							>
 								<div class="row">
@@ -315,9 +276,7 @@
 								</div>
 							</alert>
 							<alert
-								v-show="
-									form.WaterSource == 'Black Flies'
-								"
+								v-show="form.WaterSource == 'Black Flies'"
 								class="mt-4"
 							>
 								<div class="row">
@@ -345,10 +304,7 @@
 								</div>
 							</alert>
 							<alert
-								v-show="
-									form.WaterSource ==
-										'Standing Water'
-								"
+								v-show="form.WaterSource == 'Standing Water'"
 								class="mt-4"
 							>
 								<div class="row">
@@ -369,9 +325,7 @@
 								</div>
 							</alert>
 							<alert
-								v-show="
-									form.WaterSource == 'Bees or Wasps'
-								"
+								v-show="form.WaterSource == 'Bees or Wasps'"
 								class="mt-4"
 								variant="danger"
 							>
@@ -441,6 +395,8 @@
 						<b-form-checkbox-group
 							name="BiteTimes"
 							v-model="form.BiteTimes"
+							rules="min:1"
+							required
 							:options="when_are_bites_occurring_options"
 							stacked
 						></b-form-checkbox-group>
@@ -449,6 +405,7 @@
 						<b-form-textarea
 							name="Comments"
 							v-model="form.Comments"
+							required
 						></b-form-textarea>
 					</input-group>
 				</Step>
@@ -463,6 +420,7 @@
 					<input-group label="Name">
 						<b-form-input
 							name="Name"
+							rules="required"
 							v-model="form.Name"
 						></b-form-input>
 					</input-group>
@@ -482,6 +440,7 @@
 					<input-group label="Phone">
 						<b-form-input
 							name="Phone"
+							rules="required"
 							v-model="form.Phone"
 							type="tel"
 						></b-form-input>
@@ -497,9 +456,7 @@
 					</input-group>
 					<input-group
 						label="How did you hear about us (other)?"
-						v-show="
-							form.RefferalSource.includes('Other')
-						"
+						v-show="form.RefferalSource.includes('Other')"
 					>
 						<b-form-input
 							name="RefferalSourceOther"
@@ -509,6 +466,7 @@
 					<input-group label="Address to report">
 						<address-verifier
 							ref="address_verifier"
+							v-model="form.AddressObject"
 						></address-verifier>
 					</input-group>
 					<input-group label="Additional building info">
@@ -526,9 +484,7 @@
 							name="GateCodes"
 							v-model="form.GateCodes"
 						></b-form-input>
-						<b-form-text
-							>Gate codes, entry codes, etc.</b-form-text
-						>
+						<b-form-text>Gate codes, entry codes, etc.</b-form-text>
 					</input-group>
 					<input-group label="Nearest cross street">
 						<b-form-input
@@ -540,7 +496,11 @@
 						<b-form-radio-group
 							name="YourAddress"
 							v-model="form.YourAddress"
-							:options="[ {text: 'Yes', value: true}, {text: 'No', value: false}, ]"
+							required
+							:options="[
+								{ text: 'Yes', value: true },
+								{ text: 'No', value: false },
+							]"
 							stacked
 						></b-form-radio-group>
 					</input-group>
@@ -548,27 +508,45 @@
 						<b-form-radio-group
 							name="Chickens"
 							v-model="form.Chickens"
-							:options="[ {text: 'Yes', value: true}, {text: 'No', value: false}, ]"
+							required
+							:options="[
+								{ text: 'Yes', value: true },
+								{ text: 'No', value: false },
+							]"
 							stacked
 						></b-form-radio-group>
 					</input-group>
 				</Step>
-                <Step heading="Images">
-                    <input-group label="Upload helpful images (optional)">
+				<Step heading="Images">
+					<input-group label="Upload helpful images (optional)">
 						<b-form-file
 							name="Images"
 							v-model="form.Images"
-                            placeholder="Select files"
-                            rules="image|max:4000"
-                            multiple
+							placeholder="Select files"
+							rules="image|max:4000"
+							multiple
 						></b-form-file>
-                        <b-form-text>Limit 2 images, 4MB each</b-form-text>
+						<b-form-text>Limit 2 images, 4MB each</b-form-text>
 					</input-group>
-                </Step>
+				</Step>
 				<Step heading="Review & Submit">
-					<p>Greater Los Angeles County Vector Control Technicians conduct site inspections on weekdays between 7am & 3pm during the regular mosquito season. Best efforts will be made to accommodate the property owner's availability but it is not guaranteed during the season. Inspections may be conducted when resident/owner is not present only with pre-authorization and scheduled appointment.</p>
-                    <p> Your privacy matters to us. The District considers all reports and requests for service confidential, and will not disclose the requests unless California law requires such disclosure. Your information will not be sold or shared with other parties.</p>
-                </Step>
+					<p>
+						Greater Los Angeles County Vector Control Technicians
+						conduct site inspections on weekdays between 7am & 3pm
+						during the regular mosquito season. Best efforts will be
+						made to accommodate the property owner's availability
+						but it is not guaranteed during the season. Inspections
+						may be conducted when resident/owner is not present only
+						with pre-authorization and scheduled appointment.
+					</p>
+					<p>
+						Your privacy matters to us. The District considers all
+						reports and requests for service confidential, and will
+						not disclose the requests unless California law requires
+						such disclosure. Your information will not be sold or
+						shared with other parties.
+					</p>
+				</Step>
 			</div>
 		</form>
 	</div>
@@ -581,7 +559,8 @@ import InputGroup from "./components/Form/InputGroup.vue";
 import ImageRadioButton from "./components/Form/ImageRadioButton.vue";
 import kwesforms from "kwesforms";
 import AddressVerifier from "./components/Form/AddressVerifier.vue";
-import axios from 'axios';
+import axios from "axios";
+import { pick, isEmpty } from "lodash";
 
 export default {
 	name: "App",
@@ -596,7 +575,7 @@ export default {
 		return {
 			form_id: "glacvcd-form",
 			form: {
-				WaterSource: false,
+				WaterSource: [],
 				BiteTimes: [],
 				Comments: "",
 				CaseNumber: "",
@@ -605,13 +584,13 @@ export default {
 				Email: "",
 				Phone: "",
 				RefferalSource: [],
-				BuildingInfo: '',
-				GateCodes: '',
-				NearestCrossSt: '',
+				BuildingInfo: "",
+				GateCodes: "",
+				NearestCrossSt: "",
 				YourAddress: null,
 				Chickens: null,
-                Images: [],
-                AddressJson: '',
+				Images: [],
+				AddressObject: {},
 			},
 			when_are_bites_occurring_options: [
 				"Night",
@@ -629,7 +608,7 @@ export default {
 				"Advertisement",
 				"Other",
 			],
-            endpoint: "https://sr.glacvcdops.com/Api/DeveloperSRS",
+			endpoint: "https://sr.glacvcdops.com/Api/DeveloperSRS",
 		};
 	},
 	mounted() {
@@ -637,10 +616,10 @@ export default {
 		setTimeout(() => {
 			kwesforms.setCustomRule(
 				this.form_id,
-				"address_json",
+				"map_status",
 				'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
 				(value) => {
-					return value == "vague" || value == "outside";
+					return value != "valid";
 				}
 			);
 		}, 1);
@@ -649,28 +628,78 @@ export default {
 			this.$refs.address_verifier.refresh();
 		});
 
-        this.$refs.form.addEventListener("kwSubmitted", () => {
-            this.submit();
-        });
+		this.$refs.form.addEventListener("kwSubmitted", () => {
+			this.submit();
+		});
 	},
 
-    computed: {
-        formFormatted() {
-            let formatted = this.form;
-            return formatted;
-        }
-    },
+	computed: {
+		formFormatted() {
+			let formatted = pick(this.form, [
+				"WaterSource",
+				"BiteTimes",
+				"Comments",
+				"CaseNumber",
+				"Name",
+				"company",
+				"Email",
+				"Phone",
+				"RefferalSource",
+				"BuildingInfo",
+				"GateCodes",
+				"NearestCrossSt",
+				"YourAddress",
+				"Chickens",
+			]);
+			
+			if(!isEmpty(this.form.AddressObject)) {
+				let street_address_parts = [];
 
-    methods: {
-        submit() {
-            axios.post(this.endpoint, this.formFormatted, { })
-                .then((response) => {
-                    console.log(response);
-                }, (error) => {
-                    console.log(error);
-                });
-        }
-    }
+				for (
+					let index = 0;
+					index < this.form.AddressObject.address_components.length;
+					index++
+				) {
+					const element = this.form.AddressObject.address_components[
+						index
+					];
+					if (element["types"].includes("street_number")) {
+						street_address_parts[0] = element["short_name"];
+					} else if (element["types"].includes("route")) {
+						street_address_parts[1] = element["short_name"];
+					} else if (element["types"].includes("locality")) {
+						formatted.City = element["short_name"];
+					} else if (element["types"].includes("postal_code")) {
+						formatted.ZipCode = element["short_name"];
+					}
+				}
+
+				formatted.Address = street_address_parts.join(" ");
+				if (formatted.ZipCode) formatted.ZipCode = "00000";
+				formatted.lat = this.form.AddressObject.geometry.location.lat;
+				formatted.lng = this.form.AddressObject.geometry.location.lng;
+			}
+
+			formatted.WaterSource = formatted.WaterSource.join(",");
+			formatted.BiteTimes = formatted.BiteTimes.join(",");
+			formatted.RefferalSource = formatted.RefferalSource.join(",");
+
+			return formatted;
+		},
+	},
+
+	methods: {
+		submit() {
+			axios.post(this.endpoint, this.formFormatted, {}).then(
+				(response) => {
+					console.log(response);
+				},
+				(error) => {
+					console.log(error);
+				}
+			);
+		},
+	},
 };
 </script>
 
@@ -692,9 +721,24 @@ export default {
 }
 
 .kw-multistep-button {
-    @extend .btn;
-    &.kw-multistep-button-submit, &.kw-multistep-button-next {
-        @extend .btn-primary;
-    }
+	@extend .btn;
+	&.kw-multistep-button-submit,
+	&.kw-multistep-button-next {
+		@extend .btn-primary;
+	}
+}
+
+fieldset + .kw-field-error-message {
+	@include make-col-ready();
+	@include make-col(12);
+	padding-left:2px;
+	@include media-breakpoint-up(sm) {
+		@include make-col(6);
+		@include make-col-offset(6);
+	}
+	@include media-breakpoint-up(xl) {
+		@include make-col(9);
+		@include make-col-offset(3);
+	}
 }
 </style>

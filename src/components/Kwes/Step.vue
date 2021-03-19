@@ -10,12 +10,10 @@
 
 <script>
 export default {
-  props: {
-	  heading: String,
-  }
+	props: {
+		heading: String,
+	},
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
