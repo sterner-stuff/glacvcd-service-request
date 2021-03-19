@@ -9,10 +9,11 @@
 		<input
 			class="pac-input form-control"
 			placeholder="Address to report"
-			name="address_pretty"
+			name="pretty_address"
 			type="text"
 			aria-invalid="false"
 			ref="address"
+            v-model="pretty_address"
 		/>
 		<div ref="map" class="map" style="margin-top:1em;"></div>
 	</div>
@@ -38,6 +39,7 @@ export default {
 			icon: 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png',
 			valid: false,
 			value: false,
+            pretty_address: '',
 		};
 	},
 	methods: {

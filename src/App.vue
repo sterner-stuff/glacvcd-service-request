@@ -156,8 +156,8 @@
 					<b-form-group data-kw-group>
 						<b-form-radio-group
 							id="service-request-type"
-							name="service_request_type"
-							v-model="form.service_request_type"
+							name="WaterSource"
+							v-model="form.WaterSource"
 							stacked
 						>
 							<div
@@ -171,7 +171,7 @@
 										src="images/mosquitoes.jpg"
 										:selected="
 											'Mosquitoes' ==
-												form.service_request_type
+												form.WaterSource
 										"
 									></image-radio-button>
 								</div>
@@ -183,7 +183,7 @@
 										src="images/black-flies.jpg"
 										:selected="
 											'Black Flies' ==
-												form.service_request_type
+												form.WaterSource
 										"
 									></image-radio-button>
 								</div>
@@ -195,7 +195,7 @@
 										src="images/midges.jpg"
 										:selected="
 											'Midges' ==
-												form.service_request_type
+												form.WaterSource
 										"
 									></image-radio-button>
 								</div>
@@ -207,7 +207,7 @@
 										src="images/mosquitofish.jpg"
 										:selected="
 											'Mosquitofish Request' ==
-												form.service_request_type
+												form.WaterSource
 										"
 									></image-radio-button>
 								</div>
@@ -219,7 +219,7 @@
 										src="images/standing-water.jpg"
 										:selected="
 											'Standing Water' ==
-												form.service_request_type
+												form.WaterSource
 										"
 									></image-radio-button>
 								</div>
@@ -231,7 +231,7 @@
 										src="images/neglected-pool.jpg"
 										:selected="
 											'Neglected Pool' ==
-												form.service_request_type
+												form.WaterSource
 										"
 									></image-radio-button>
 								</div>
@@ -242,7 +242,7 @@
 										value="Other"
 										src="images/other.jpg"
 										:selected="
-											'Other' == form.service_request_type
+											'Other' == form.WaterSource
 										"
 									></image-radio-button>
 								</div>
@@ -255,7 +255,7 @@
 										invalid
 										:selected="
 											'Bees or Wasps' ==
-												form.service_request_type
+												form.WaterSource
 										"
 									></image-radio-button>
 								</div>
@@ -268,7 +268,7 @@
 										invalid
 										:selected="
 											'Rodents' ==
-												form.service_request_type
+												form.WaterSource
 										"
 									></image-radio-button>
 								</div>
@@ -281,14 +281,14 @@
 										invalid
 										:selected="
 											'Fire Ants, Cockroaches, or Flies' ==
-												form.service_request_type
+												form.WaterSource
 										"
 									></image-radio-button>
 								</div>
 							</div>
 							<alert
 								v-show="
-									form.service_request_type == 'Mosquitoes'
+									form.WaterSource == 'Mosquitoes'
 								"
 								class="mt-4"
 							>
@@ -316,7 +316,7 @@
 							</alert>
 							<alert
 								v-show="
-									form.service_request_type == 'Black Flies'
+									form.WaterSource == 'Black Flies'
 								"
 								class="mt-4"
 							>
@@ -346,7 +346,7 @@
 							</alert>
 							<alert
 								v-show="
-									form.service_request_type ==
+									form.WaterSource ==
 										'Standing Water'
 								"
 								class="mt-4"
@@ -370,7 +370,7 @@
 							</alert>
 							<alert
 								v-show="
-									form.service_request_type == 'Bees or Wasps'
+									form.WaterSource == 'Bees or Wasps'
 								"
 								class="mt-4"
 								variant="danger"
@@ -396,7 +396,7 @@
 								</div>
 							</alert>
 							<alert
-								v-show="form.service_request_type == 'Rodents'"
+								v-show="form.WaterSource == 'Rodents'"
 								class="mt-4"
 								variant="danger"
 							>
@@ -418,7 +418,7 @@
 							</alert>
 							<alert
 								v-show="
-									form.service_request_type ==
+									form.WaterSource ==
 										'Fire Ants, Cockroaches, or Flies'
 								"
 								class="mt-4"
@@ -439,31 +439,31 @@
 					</b-form-group>
 					<input-group label="When are mosquito bites occurring?">
 						<b-form-checkbox-group
-							name="when_are_bites_occurring"
-							v-model="form.when_are_bites_occurring"
+							name="BiteTimes"
+							v-model="form.BiteTimes"
 							:options="when_are_bites_occurring_options"
 							stacked
 						></b-form-checkbox-group>
 					</input-group>
 					<input-group label="Additional details about the situation">
 						<b-form-textarea
-							name="additional_details"
-							v-model="form.additional_details"
+							name="Comments"
+							v-model="form.Comments"
 						></b-form-textarea>
 					</input-group>
 				</Step>
 				<Step heading="Contact Information">
 					<input-group label="Case Number">
 						<b-form-input
-							name="case_number"
-							v-model="form.case_number"
+							name="CaseNumber"
+							v-model="form.CaseNumber"
 						></b-form-input>
 						<b-form-text>If you've been assigned one</b-form-text>
 					</input-group>
 					<input-group label="Name">
 						<b-form-input
-							name="name"
-							v-model="form.name"
+							name="Name"
+							v-model="form.Name"
 						></b-form-input>
 					</input-group>
 					<input-group label="Company">
@@ -474,22 +474,22 @@
 					</input-group>
 					<input-group label="Email">
 						<b-form-input
-							name="email"
-							v-model="form.email"
+							name="Email"
+							v-model="form.Email"
 							type="email"
 						></b-form-input>
 					</input-group>
 					<input-group label="Phone">
 						<b-form-input
-							name="phone"
-							v-model="form.phone"
+							name="Phone"
+							v-model="form.Phone"
 							type="tel"
 						></b-form-input>
 					</input-group>
 					<input-group label="How did you hear about us?">
 						<b-form-checkbox-group
-							name="how_did_you_hear_about_us"
-							v-model="form.how_did_you_hear_about_us"
+							name="RefferalSource"
+							v-model="form.RefferalSource"
 							:options="how_did_you_hear_options"
 							stacked
 							style="column-count:2"
@@ -498,12 +498,12 @@
 					<input-group
 						label="How did you hear about us (other)?"
 						v-show="
-							form.how_did_you_hear_about_us.includes('Other')
+							form.RefferalSource.includes('Other')
 						"
 					>
 						<b-form-input
-							name="how_did_you_hear_other"
-							v-model="form.how_did_you_hear_other"
+							name="RefferalSourceOther"
+							v-model="form.RefferalSourceOther"
 						></b-form-input>
 					</input-group>
 					<input-group label="Address to report">
@@ -513,8 +513,8 @@
 					</input-group>
 					<input-group label="Additional building info">
 						<b-form-input
-							name="additional_building_info"
-							v-model="form.additional_building_info"
+							name="BuildingInfo"
+							v-model="form.BuildingInfo"
 						></b-form-input>
 						<b-form-text
 							>Building, apartment, or suite number,
@@ -523,8 +523,8 @@
 					</input-group>
 					<input-group label="Property Access Information ">
 						<b-form-input
-							name="property_access_information"
-							v-model="form.property_access_information"
+							name="GateCodes"
+							v-model="form.GateCodes"
 						></b-form-input>
 						<b-form-text
 							>Gate codes, entry codes, etc.</b-form-text
@@ -532,22 +532,22 @@
 					</input-group>
 					<input-group label="Nearest cross street">
 						<b-form-input
-							name="nearest_cross_street"
-							v-model="form.nearest_cross_street"
+							name="NearestCrossSt"
+							v-model="form.NearestCrossSt"
 						></b-form-input>
 					</input-group>
 					<input-group label="Do you live at this address?">
 						<b-form-radio-group
-							name="do_you_live_here"
-							v-model="form.do_you_live_here"
+							name="YourAddress"
+							v-model="form.YourAddress"
 							:options="[ {text: 'Yes', value: true}, {text: 'No', value: false}, ]"
 							stacked
 						></b-form-radio-group>
 					</input-group>
 					<input-group label="Do you have chickens in your yard?">
 						<b-form-radio-group
-							name="do_you_have_chickens"
-							v-model="form.do_you_have_chickens"
+							name="Chickens"
+							v-model="form.Chickens"
 							:options="[ {text: 'Yes', value: true}, {text: 'No', value: false}, ]"
 							stacked
 						></b-form-radio-group>
@@ -556,8 +556,8 @@
                 <Step heading="Images">
                     <input-group label="Upload helpful images (optional)">
 						<b-form-file
-							name="images"
-							v-model="form.images"
+							name="Images"
+							v-model="form.Images"
                             placeholder="Select files"
                             rules="image|max:4000"
                             multiple
@@ -581,6 +581,7 @@ import InputGroup from "./components/Form/InputGroup.vue";
 import ImageRadioButton from "./components/Form/ImageRadioButton.vue";
 import kwesforms from "kwesforms";
 import AddressVerifier from "./components/Form/AddressVerifier.vue";
+import axios from 'axios';
 
 export default {
 	name: "App",
@@ -595,21 +596,22 @@ export default {
 		return {
 			form_id: "glacvcd-form",
 			form: {
-				service_request_type: false,
-				when_are_bites_occurring: [],
-				additional_details: "",
-				case_number: "",
-				name: "",
+				WaterSource: false,
+				BiteTimes: [],
+				Comments: "",
+				CaseNumber: "",
+				Name: "",
 				company: "",
-				email: "",
-				phone: "",
-				how_did_you_hear_about_us: [],
-				additional_building_info: '',
-				property_access_information: '',
-				nearest_cross_street: '',
-				do_you_live_here: null,
-				do_you_have_chickens: null,
-                images: [],
+				Email: "",
+				Phone: "",
+				RefferalSource: [],
+				BuildingInfo: '',
+				GateCodes: '',
+				NearestCrossSt: '',
+				YourAddress: null,
+				Chickens: null,
+                Images: [],
+                AddressJson: '',
 			},
 			when_are_bites_occurring_options: [
 				"Night",
@@ -627,6 +629,7 @@ export default {
 				"Advertisement",
 				"Other",
 			],
+            endpoint: "https://sr.glacvcdops.com/Api/DeveloperSRS",
 		};
 	},
 	mounted() {
@@ -643,27 +646,31 @@ export default {
 		}, 1);
 
 		this.$refs.form.addEventListener("kwMultistepNextClicked", () => {
-			/**
-			 * bubbles: false
-				cancelBubble: false
-				cancelable: false
-				composed: false
-				currentTarget: null
-				defaultPrevented: false
-				detail: Object { cancelSubmitEvents: false }
-				eventPhase: 0
-				explicitOriginalTarget: <button class="kw-multistep-button kw-multistep-button-next" type="button">
-				isTrusted: false
-				originalTarget: <form class="kwes-form" action="https://kwes.io/api/fore...rms/tKYcmMgyhd7a7R2fq6Xw" multistep="" method="post" novalidate="novalidate">
-				returnValue: true
-				srcElement: <form>
-				target: <form>
-				timeStamp: 180320
-				type: "kwMultistepNextClicked"
-			 */
 			this.$refs.address_verifier.refresh();
 		});
+
+        this.$refs.form.addEventListener("kwSubmitted", () => {
+            this.submit();
+        });
 	},
+
+    computed: {
+        formFormatted() {
+            let formatted = this.form;
+            return formatted;
+        }
+    },
+
+    methods: {
+        submit() {
+            axios.post(this.endpoint, this.formFormatted, { })
+                .then((response) => {
+                    console.log(response);
+                }, (error) => {
+                    console.log(error);
+                });
+        }
+    }
 };
 </script>
 
