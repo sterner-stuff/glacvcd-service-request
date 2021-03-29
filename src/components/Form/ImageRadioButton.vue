@@ -25,6 +25,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
 .custom-control {
 	padding-left: 0;
 	display: flex;
@@ -35,8 +38,11 @@ img {
 	max-width: 100%;
 	margin: 1em auto 0;
 	width: 150px;
-	height: 150px !important;
+	height: 100px !important;
 	object-fit: cover;
+    @include media-breakpoint-up(md) {
+        height:150px !important;
+    }
 }
 ::v-deep {
 	label {

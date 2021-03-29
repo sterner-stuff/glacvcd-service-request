@@ -1,9 +1,7 @@
 <template>
 	<div class="kw-multistep-step" :form-step-heading="heading">
 		<div class="kw-multistep-body">
-			<div class="container">
-				<slot></slot>
-			</div>
+			<slot></slot>
 		</div>
 	</div>
 </template>

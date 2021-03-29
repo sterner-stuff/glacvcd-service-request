@@ -5,7 +5,7 @@
 			style="position:absolute;left:-9999px;"
 			name="map_status"
 			ref="map_status"
-            rules="required"
+			rules="required"
 			:value="this.map_status"
 		/>
 
@@ -88,7 +88,7 @@ export default {
 				this.validatePlace(place);
 			});
 
-			if(!isEmpty(this.value)) {
+			if (!isEmpty(this.value)) {
 				this.updateMapPlace(this.value);
 				this.validatePlace(this.value);
 			}

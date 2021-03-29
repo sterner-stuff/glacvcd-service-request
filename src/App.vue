@@ -1,12 +1,23 @@
 <template>
-	<div id="app">
-		<img alt="Vue logo" src="./assets/logo.png" />
+	<div id="app"
+		class="my-5"
+	>
+		<div class="row align-items-center">
+			<div class="col-12 col-sm-auto text-center">
+				<img alt="Vue logo" src="./assets/images/logo.png" />
+			</div>
+			<div class="col-12 col-sm text-center my-3 my-sm-0">
+				<h1>
+					<small>Greater Los Angeles County Vector Control District</small><br>Service Request Form
+				</h1>
+			</div>
+		</div>
 		<form
 			ref="form"
 			enctype="multipart/form-data"
 			:id="form_id"
 			class="kwes-form"
-			action="https://kwes.io/api/foreign/forms/tKYcmMgyhd7a7R2fq6Xw"
+			action="https://kwes.io/api/foreign/forms/2CswQLJZcExo1kdYS1OX"
 			multistep
 			no-reload
 		>
@@ -25,7 +36,7 @@
 						Submitting a Service Request? Here’s what to expect.
 					</h2>
 					<div style="margin:15px 0;max-width:560px;">
-						<div class="x-resp-embed">
+						<div class="embed-responsive embed-responsive-16by9">
 							<iframe
 								src="https://www.youtube.com/embed/bOQ_cyGos50"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -33,6 +44,7 @@
 								width="760"
 								height="515"
 								frameborder="0"
+								class="embed-responsive-item"
 							></iframe>
 						</div>
 					</div>
@@ -152,17 +164,23 @@
 					</p>
 				</Step>
 				<Step heading="Service Request Type">
-					<!-- <b-form-group data-kw-group
-						rules="not_regex:/^(Bees|Rodents)/"> -->
-					<b-form-group data-kw-group>
+					<!--<b-form-group
+						data-kw-group
+						rules="not_regex:/^(Bees|Rodents)/"
+					>-->
+					<b-form-group 
+						data-kw-group
+						rules="required"
+					>
 						<b-form-radio-group
 							id="service-request-type"
 							name="WaterSource"
 							v-model="form.WaterSource"
+							@change="scrollToNext"
 							stacked
 						>
 							<div
-								class="row row-cols-1 row-cols-md-2 row-cols-xl-4 align-content-stretch"
+								class="row row-cols-2 row-cols-md-3 row-cols-xl-4 align-content-stretch"
 							>
 								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
@@ -202,13 +220,7 @@
 								</div>
 								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
-										value="Other"
-										src="images/other.jpg"
-									></image-radio-button>
-								</div>
-								<div class="col mt-4 d-flex flex-column">
-									<image-radio-button
-										value="Bees or Wasps"
+										value="Bees"
 										src="images/bees.jpg"
 										invalid
 									></image-radio-button>
@@ -222,9 +234,15 @@
 								</div>
 								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
-										value="Fire Ants, Cockroaches, or Flies"
+										value="Fire Ants"
 										src="images/ants.png"
 										invalid
+									></image-radio-button>
+								</div>
+								<div class="col mt-4 d-flex flex-column">
+									<image-radio-button
+										value="Other"
+										src="images/other.jpg"
 									></image-radio-button>
 								</div>
 							</div>
@@ -304,7 +322,7 @@
 								</div>
 							</alert>
 							<alert
-								v-show="form.WaterSource == 'Bees or Wasps'"
+								v-show="form.WaterSource == 'Bees'"
 								class="mt-4"
 								variant="danger"
 							>
@@ -352,7 +370,7 @@
 							<alert
 								v-show="
 									form.WaterSource ==
-										'Fire Ants, Cockroaches, or Flies'
+										'Fire Ants'
 								"
 								class="mt-4"
 								variant="danger"
@@ -370,11 +388,12 @@
 							</alert>
 						</b-form-radio-group>
 					</b-form-group>
-					<input-group label="When are mosquito bites occurring?">
+					<input-group ref="bites_occurring" label="When are mosquito bites occurring?">
 						<b-form-checkbox-group
 							name="BiteTimes"
 							v-model="form.BiteTimes"
 							rules="min:1"
+							class="required"
 							required
 							:options="when_are_bites_occurring_options"
 							stacked
@@ -383,6 +402,7 @@
 					<input-group label="Additional details about the situation">
 						<b-form-textarea
 							name="Comments"
+							class="required"
 							v-model="form.Comments"
 							required
 						></b-form-textarea>
@@ -442,6 +462,8 @@
 							v-model="form.RefferalSourceOther"
 						></b-form-input>
 					</input-group>
+				</Step>
+				<Step heading="Location Information">
 					<input-group label="Address to report">
 						<address-verifier
 							ref="address_verifier"
@@ -598,7 +620,15 @@ export default {
 				"map_status",
 				'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
 				(value) => {
-					return value != "valid";
+					return value != 'valid';
+				}
+			);
+			kwesforms.setCustomRule(
+				this.form_id,
+				"WaterSource",
+				'Your selection is not a valid service request.',
+				(value) => {
+					return ['Bees', 'Rodents', 'Fire Ants'].includes(value);
 				}
 			);
 		}, 1);
@@ -654,7 +684,7 @@ export default {
 				}
 
 				formatted.Address = street_address_parts.join(" ");
-				if (formatted.ZipCode) formatted.ZipCode = "00000";
+				if (!formatted.ZipCode) formatted.ZipCode = "00000";
 				formatted.lat = this.form.AddressObject.geometry.location.lat;
 				formatted.lng = this.form.AddressObject.geometry.location.lng;
 			}
@@ -696,6 +726,11 @@ export default {
 				reader.onerror = (error) => reject(error);
 			});
 		},
+
+		scrollToNext() {
+			// console.log(this.$refs.bites_occurring);
+			this.$refs.bites_occurring.$el.scrollIntoView();
+		}
 	},
 };
 </script>
