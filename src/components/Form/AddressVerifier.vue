@@ -5,6 +5,7 @@
 			style="position:absolute;left:-9999px;"
 			name="map_status"
 			ref="map_status"
+            rules="required"
 			:value="this.map_status"
 		/>
 

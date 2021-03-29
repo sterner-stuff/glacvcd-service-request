@@ -160,88 +160,67 @@
 							name="WaterSource"
 							v-model="form.WaterSource"
 							stacked
-							goofy="maybe"
 						>
 							<div
 								class="row row-cols-1 row-cols-md-2 row-cols-xl-4 align-content-stretch"
 							>
-								<div
-									class="col mt-4 d-flex flex-column"
-								>
+								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
 										value="Mosquitoes"
 										src="images/mosquitoes.jpg"
 									></image-radio-button>
 								</div>
-								<div
-									class="col mt-4 d-flex flex-column"
-								>
+								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
 										value="Black Flies"
 										src="images/black-flies.jpg"
 									></image-radio-button>
 								</div>
-								<div
-									class="col mt-4 d-flex flex-column"
-								>
+								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
 										value="Midges"
 										src="images/midges.jpg"
 									></image-radio-button>
 								</div>
-								<div
-									class="col mt-4 d-flex flex-column"
-								>
+								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
 										value="Mosquitofish Request"
 										src="images/mosquitofish.jpg"
 									></image-radio-button>
 								</div>
-								<div
-									class="col mt-4 d-flex flex-column"
-								>
+								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
 										value="Standing Water"
 										src="images/standing-water.jpg"
 									></image-radio-button>
 								</div>
-								<div
-									class="col mt-4 d-flex flex-column"
-								>
+								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
 										value="Neglected Pool"
 										src="images/neglected-pool.jpg"
 									></image-radio-button>
 								</div>
-								<div
-									class="col mt-4 d-flex flex-column"
-								>
+								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
 										value="Other"
 										src="images/other.jpg"
 									></image-radio-button>
 								</div>
-								<div
-									class="col mt-4 d-flex flex-column"
-								>
+								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
 										value="Bees or Wasps"
 										src="images/bees.jpg"
 										invalid
 									></image-radio-button>
 								</div>
-								<div
-									class="col mt-4 d-flex flex-column"
-								>
+								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
 										value="Rodents"
 										src="images/rodents.jpg"
 										invalid
 									></image-radio-button>
 								</div>
-								<div
-									class="col mt-4 d-flex flex-column"
-								>
+								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
 										value="Fire Ants, Cockroaches, or Flies"
 										src="images/ants.png"
@@ -575,7 +554,7 @@ export default {
 		return {
 			form_id: "glacvcd-form",
 			form: {
-				WaterSource: [],
+				WaterSource: "",
 				BiteTimes: [],
 				Comments: "",
 				CaseNumber: "",
@@ -651,8 +630,8 @@ export default {
 				"YourAddress",
 				"Chickens",
 			]);
-			
-			if(!isEmpty(this.form.AddressObject)) {
+
+			if (!isEmpty(this.form.AddressObject)) {
 				let street_address_parts = [];
 
 				for (
@@ -680,7 +659,6 @@ export default {
 				formatted.lng = this.form.AddressObject.geometry.location.lng;
 			}
 
-			formatted.WaterSource = formatted.WaterSource.join(",");
 			formatted.BiteTimes = formatted.BiteTimes.join(",");
 			formatted.RefferalSource = formatted.RefferalSource.join(",");
 
@@ -689,8 +667,18 @@ export default {
 	},
 
 	methods: {
-		submit() {
-			axios.post(this.endpoint, this.formFormatted, {}).then(
+		async submit() {
+			let data = this.formFormatted;
+			let base64Images = [];
+
+			for (let index = 0; index < this.form.Images.length; index++) {
+				const element = this.form.Images[index];
+				base64Images.push(await this.base64File(element));
+			}
+
+			data.Images = base64Images.join(",");
+
+			axios.post(this.endpoint, data, {}).then(
 				(response) => {
 					console.log(response);
 				},
@@ -698,6 +686,15 @@ export default {
 					console.log(error);
 				}
 			);
+		},
+
+		base64File(file) {
+			return new Promise((resolve, reject) => {
+				const reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = () => resolve(reader.result);
+				reader.onerror = (error) => reject(error);
+			});
 		},
 	},
 };
@@ -731,7 +728,7 @@ export default {
 fieldset + .kw-field-error-message {
 	@include make-col-ready();
 	@include make-col(12);
-	padding-left:2px;
+	padding-left: 2px;
 	@include media-breakpoint-up(sm) {
 		@include make-col(6);
 		@include make-col-offset(6);
