@@ -5,7 +5,15 @@
 	</b-alert>
 </template>
 <script>
+
+import { BAlert } from 'bootstrap-vue';
+
 export default {
+
+    components: {
+        BAlert,
+    },
+    
 	props: {
 		variant: {
 			default: "transparent",

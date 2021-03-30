@@ -30,7 +30,7 @@ npm run lint
 
 ### Build for production
 ```
-vue-cli-service build --target wc --inline-vue --name service-request-form src/App.vue
+./node_modules/.bin/vue-cli-service build --target wc --inline-vue --name service-request-form src/App.vue
 ```
 
 [See the Vue-CLI docs for building to a web component for more details](https://cli.vuejs.org/guide/build-targets.html#web-component).

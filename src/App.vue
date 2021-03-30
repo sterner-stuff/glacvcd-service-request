@@ -1,14 +1,15 @@
 <template>
-	<div id="app"
-		class="my-5"
-	>
+	<div id="app" class="my-5">
 		<div class="row align-items-center">
 			<div class="col-12 col-sm-auto text-center">
 				<img alt="Vue logo" src="./assets/images/logo.png" />
 			</div>
 			<div class="col-12 col-sm text-center my-3 my-sm-0">
 				<h1>
-					<small>Greater Los Angeles County Vector Control District</small><br>Service Request Form
+					<small
+						>Greater Los Angeles County Vector Control
+						District</small
+					><br />Service Request Form
 				</h1>
 			</div>
 		</div>
@@ -168,10 +169,7 @@
 						data-kw-group
 						rules="not_regex:/^(Bees|Rodents)/"
 					>-->
-					<b-form-group 
-						data-kw-group
-						rules="required"
-					>
+					<b-form-group data-kw-group rules="required">
 						<b-form-radio-group
 							id="service-request-type"
 							name="WaterSource"
@@ -368,10 +366,7 @@
 								</div>
 							</alert>
 							<alert
-								v-show="
-									form.WaterSource ==
-										'Fire Ants'
-								"
+								v-show="form.WaterSource == 'Fire Ants'"
 								class="mt-4"
 								variant="danger"
 							>
@@ -388,7 +383,10 @@
 							</alert>
 						</b-form-radio-group>
 					</b-form-group>
-					<input-group ref="bites_occurring" label="When are mosquito bites occurring?">
+					<input-group
+						ref="bites_occurring"
+						label="When are mosquito bites occurring?"
+					>
 						<b-form-checkbox-group
 							name="BiteTimes"
 							v-model="form.BiteTimes"
@@ -561,6 +559,7 @@ import ImageRadioButton from "./components/Form/ImageRadioButton.vue";
 import kwesforms from "kwesforms";
 import AddressVerifier from "./components/Form/AddressVerifier.vue";
 import axios from "axios";
+import { BFormGroup, BAlert, BFormText, BFormRadioGroup, BFormInput, BFormFile, BFormCheckboxGroup, BFormTextarea } from 'bootstrap-vue';
 import { pick, isEmpty } from "lodash";
 
 export default {
@@ -571,6 +570,14 @@ export default {
 		ImageRadioButton,
 		InputGroup,
 		AddressVerifier,
+		BFormGroup,
+		BAlert,
+		BFormText,
+		BFormRadioGroup,
+		BFormInput,
+		BFormFile,
+		BFormCheckboxGroup,
+		BFormTextarea,
 	},
 	data() {
 		return {
@@ -620,15 +627,15 @@ export default {
 				"map_status",
 				'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
 				(value) => {
-					return value != 'valid';
+					return value != "valid";
 				}
 			);
 			kwesforms.setCustomRule(
 				this.form_id,
 				"WaterSource",
-				'Your selection is not a valid service request.',
+				"Your selection is not a valid service request.",
 				(value) => {
-					return ['Bees', 'Rodents', 'Fire Ants'].includes(value);
+					return ["Bees", "Rodents", "Fire Ants"].includes(value);
 				}
 			);
 		}, 1);
@@ -728,9 +735,8 @@ export default {
 		},
 
 		scrollToNext() {
-			// console.log(this.$refs.bites_occurring);
 			this.$refs.bites_occurring.$el.scrollIntoView();
-		}
+		},
 	},
 };
 </script>

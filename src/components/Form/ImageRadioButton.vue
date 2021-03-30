@@ -12,7 +12,13 @@
 	</b-form-radio>
 </template>
 <script>
+
+import { BFormRadio } from 'bootstrap-vue';
+
 export default {
+    components: {
+        BFormRadio,
+    },
 	props: {
 		label: String,
 		value: String,
