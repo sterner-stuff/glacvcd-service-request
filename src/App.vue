@@ -1,5 +1,5 @@
 <template>
-	<div class="my-5">
+	<div class="my-5 glacvcd-sr-form-wrap">
 		<div class="row align-items-center">
 			<div class="col-12 col-sm-auto text-center">
 				<img alt="GLACVCD logo" src="./assets/images/logo.png" />
@@ -750,34 +750,36 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "assets/scss/variables";
-@import "node_modules/bootstrap/scss/bootstrap.scss";
-@import "node_modules/bootstrap-vue/src/index.scss";
+<style scoped lang="scss">
+.glacvcd-sr-form-wrap::v-deep {
+	@import "assets/scss/variables";
+	@import "node_modules/bootstrap/scss/bootstrap.scss";
+	@import "node_modules/bootstrap-vue/src/index.scss";
 
-.alert-transparent {
-	@include alert-variant(transparent, theme-color("primary"), $body-color);
-}
-
-.kw-multistep-button {
-	@extend .btn;
-	&.kw-multistep-button-submit,
-	&.kw-multistep-button-next {
-		@extend .btn-primary;
+	.alert-transparent {
+		@include alert-variant(transparent, theme-color("primary"), $body-color);
 	}
-}
 
-fieldset + .kw-field-error-message {
-	@include make-col-ready();
-	@include make-col(12);
-	padding-left: 2px;
-	@include media-breakpoint-up(sm) {
-		@include make-col(6);
-		@include make-col-offset(6);
+	.kw-multistep-button {
+		@extend .btn;
+		&.kw-multistep-button-submit,
+		&.kw-multistep-button-next {
+			@extend .btn-primary;
+		}
 	}
-	@include media-breakpoint-up(xl) {
-		@include make-col(9);
-		@include make-col-offset(3);
+
+	fieldset + .kw-field-error-message {
+		@include make-col-ready();
+		@include make-col(12);
+		padding-left: 2px;
+		@include media-breakpoint-up(sm) {
+			@include make-col(6);
+			@include make-col-offset(6);
+		}
+		@include media-breakpoint-up(xl) {
+			@include make-col(9);
+			@include make-col-offset(3);
+		}
 	}
 }
 </style>
