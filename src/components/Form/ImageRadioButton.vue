@@ -12,13 +12,12 @@
 	</b-form-radio>
 </template>
 <script>
-
-import { BFormRadio } from 'bootstrap-vue';
+import { BFormRadio } from "bootstrap-vue";
 
 export default {
-    components: {
-        BFormRadio,
-    },
+	components: {
+		BFormRadio,
+	},
 	props: {
 		label: String,
 		value: String,
@@ -31,7 +30,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
 .custom-control {
@@ -46,9 +44,9 @@ img {
 	width: 150px;
 	height: 100px !important;
 	object-fit: cover;
-    @include media-breakpoint-up(md) {
-        height:150px !important;
-    }
+	@include media-breakpoint-up(md) {
+		height: 150px !important;
+	}
 }
 ::v-deep {
 	label {

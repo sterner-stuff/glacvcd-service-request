@@ -1,8 +1,8 @@
 <template>
-	<div id="app" class="my-5">
+	<div class="my-5">
 		<div class="row align-items-center">
 			<div class="col-12 col-sm-auto text-center">
-				<img alt="Vue logo" src="./assets/images/logo.png" />
+				<img alt="GLACVCD logo" src="./assets/images/logo.png" />
 			</div>
 			<div class="col-12 col-sm text-center my-3 my-sm-0">
 				<h1>
@@ -559,7 +559,16 @@ import ImageRadioButton from "./components/Form/ImageRadioButton.vue";
 import kwesforms from "kwesforms";
 import AddressVerifier from "./components/Form/AddressVerifier.vue";
 import axios from "axios";
-import { BFormGroup, BAlert, BFormText, BFormRadioGroup, BFormInput, BFormFile, BFormCheckboxGroup, BFormTextarea } from 'bootstrap-vue';
+import {
+	BFormGroup,
+	BAlert,
+	BFormText,
+	BFormRadioGroup,
+	BFormInput,
+	BFormFile,
+	BFormCheckboxGroup,
+	BFormTextarea,
+} from "bootstrap-vue";
 import { pick, isEmpty } from "lodash";
 
 export default {
@@ -742,14 +751,6 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	color: #2c3e50;
-	margin-top: 60px;
-}
-
 @import "assets/scss/variables";
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 @import "node_modules/bootstrap-vue/src/index.scss";

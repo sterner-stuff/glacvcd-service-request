@@ -10,13 +10,12 @@
 </template>
 
 <script>
-
-import { BFormGroup } from 'bootstrap-vue';
+import { BFormGroup } from "bootstrap-vue";
 
 export default {
-    components: {
-        BFormGroup,
-    },
+	components: {
+		BFormGroup,
+	},
 	props: {
 		label: String,
 	},
