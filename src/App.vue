@@ -18,7 +18,7 @@
 			enctype="multipart/form-data"
 			:id="form_id"
 			class="kwes-form"
-			action="https://kwes.io/api/foreign/forms/2CswQLJZcExo1kdYS1OX"
+			action="https://kwes.io/api/foreign/forms/zy3GwS7cnN2JHQzK90z1"
 			multistep
 			no-reload
 		>
