@@ -757,7 +757,11 @@ export default {
 	@import "node_modules/bootstrap-vue/src/index.scss";
 
 	.alert-transparent {
-		@include alert-variant(transparent, theme-color("primary"), $body-color);
+		@include alert-variant(
+			transparent,
+			theme-color("primary"),
+			$body-color
+		);
 	}
 
 	.kw-multistep-button {

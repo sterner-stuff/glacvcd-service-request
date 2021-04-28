@@ -30,7 +30,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../assets/scss/variables";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/breakpoints";
 
 .custom-control {
 	padding-left: 0;
@@ -50,7 +53,7 @@ img {
 }
 ::v-deep {
 	label {
-		display: flex;
+		display: flex !important;
 		flex: 1 1 auto;
 		justify-content: stretch;
 		.interior {
@@ -65,8 +68,8 @@ img {
 			}
 		}
 	}
-	input:checked + label,
-	label:hover {
+	input.custom-control-input:checked + label.custom-control-label,
+	label.custom-control-label:hover {
 		.interior {
 			background-color: rgba(0, 92, 122, 0.3);
 			border-color: #007acc;
@@ -77,10 +80,10 @@ img {
 		}
 	}
 
-	input,
-	.custom-control-label:before,
-	.custom-control-label:after {
-		display: none;
+	input.custom-control-input,
+	label.custom-control-label:before,
+	label.custom-control-label:after {
+		display: none !important;
 	}
 }
 </style>
