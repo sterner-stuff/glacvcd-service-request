@@ -1,18 +1,5 @@
 <template>
 	<div class="my-5 glacvcd-sr-form-wrap">
-		<div class="row align-items-center">
-			<div class="col-12 col-sm-auto text-center">
-				<img alt="GLACVCD logo" src="./assets/images/logo.png" />
-			</div>
-			<div class="col-12 col-sm text-center my-3 my-sm-0">
-				<h1>
-					<small
-						>Greater Los Angeles County Vector Control
-						District</small
-					><br />Service Request Form
-				</h1>
-			</div>
-		</div>
 		<form
 			ref="form"
 			enctype="multipart/form-data"
@@ -177,6 +164,11 @@
 							@change="scrollToNext"
 							stacked
 						>
+							<div class="row">
+								<div class="col">
+									<span class="h2 d-block text-center">Service Request Type</span>
+								</div>
+							</div>
 							<div
 								class="row row-cols-2 row-cols-md-3 row-cols-xl-4 align-content-stretch"
 							>
@@ -218,6 +210,23 @@
 								</div>
 								<div class="col mt-4 d-flex flex-column">
 									<image-radio-button
+										value="Other"
+										src="images/other.jpg"
+									></image-radio-button>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-12">
+									<span class="h2 d-block text-center"
+										>Pests We Don't Service</span
+									>
+								</div>
+							</div>
+							<div
+								class="row row-cols-2 row-cols-md-3 row-cols-xl-4 align-content-stretch"
+							>
+								<div class="col mt-4 d-flex flex-column">
+									<image-radio-button
 										value="Bees"
 										src="images/bees.jpg"
 										invalid
@@ -235,12 +244,6 @@
 										value="Fire Ants"
 										src="images/ants.png"
 										invalid
-									></image-radio-button>
-								</div>
-								<div class="col mt-4 d-flex flex-column">
-									<image-radio-button
-										value="Other"
-										src="images/other.jpg"
 									></image-radio-button>
 								</div>
 							</div>
