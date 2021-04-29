@@ -145,6 +145,8 @@ export default {
 				this.map_status = "vague";
 			} else if (!inBoundaries) {
 				this.map_status = "outside";
+			} else {
+				this.map_status = "";
 			}
 
 			this.$emit("input", place);

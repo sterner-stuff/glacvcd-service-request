@@ -7,7 +7,9 @@
 			"
 		>
 			<span v-html="label ? label : value"></span>
-			<img :src="require(`@/assets/${src}`)" />
+			<div class="image-wrapper">
+				<img :src="require(`@/assets/${src}`)" />
+			</div>
 		</div>
 	</b-form-radio>
 </template>
@@ -41,14 +43,23 @@ export default {
 	flex: 1 1 auto;
 	flex-direction: column;
 }
-img {
-	max-width: 100%;
+.image-wrapper {
+	width: 100%;
+	position: relative;
 	margin: 1em auto 0;
-	width: 150px;
-	height: 100px !important;
-	object-fit: cover;
-	@include media-breakpoint-up(md) {
-		height: 150px !important;
+	&:after {
+		content: "";
+		display: block;
+		padding-bottom: 100%;
+	}
+	img {
+		max-width: 100%;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		object-fit: cover;
 	}
 }
 ::v-deep {

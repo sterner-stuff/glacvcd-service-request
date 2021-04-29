@@ -519,11 +519,17 @@
 				<Step heading="Images">
 					<input-group label="Upload helpful images (optional)">
 						<b-form-file
-							name="Images"
-							v-model="form.Images"
-							placeholder="Select files"
+							name="Image1"
+							v-model="form.Image1"
+							placeholder="Select file"
 							rules="image|max:4000"
-							multiple
+						></b-form-file>
+						<b-form-file
+							name="Image2"
+							v-model="form.Image2"
+							placeholder="Select file"
+							rules="image|max:4000"
+							class="mt-2"
 						></b-form-file>
 						<b-form-text>Limit 2 images, 4MB each</b-form-text>
 					</input-group>
@@ -606,7 +612,8 @@ export default {
 				NearestCrossSt: "",
 				YourAddress: null,
 				Chickens: null,
-				Images: [],
+				Image1: null,
+				Image2: null,
 				AddressObject: {},
 			},
 			when_are_bites_occurring_options: [
@@ -636,7 +643,15 @@ export default {
 				"map_status",
 				'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
 				(value) => {
-					return value != "valid";
+					return value == "outside";
+				}
+			);
+			kwesforms.setCustomRule(
+				this.form_id,
+				"map_status",
+				"The address you entered is not specific enough. Please enter a complete address.",
+				(value) => {
+					return value == "vague";
 				}
 			);
 			kwesforms.setCustomRule(
@@ -717,8 +732,9 @@ export default {
 			let data = this.formFormatted;
 			let base64Images = [];
 
-			for (let index = 0; index < this.form.Images.length; index++) {
-				const element = this.form.Images[index];
+			let images = [this.form.Image1, this.form.Image2];
+			for (let index = 0; index < images; index++) {
+				const element = images[index];
 				base64Images.push(await this.base64File(element));
 			}
 
@@ -755,6 +771,14 @@ export default {
 	@import "assets/scss/variables";
 	@import "node_modules/bootstrap/scss/bootstrap.scss";
 	@import "node_modules/bootstrap-vue/src/index.scss";
+
+	img {
+		max-width: 100%;
+	}
+
+	.kw-color-error {
+		outline: 1px solid #ff3852;
+	}
 
 	.alert-transparent {
 		@include alert-variant(
