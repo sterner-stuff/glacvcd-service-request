@@ -1,5 +1,5 @@
 <template>
-	<b-form-radio :value="value">
+	<b-form-radio :value="value" class="d-flex flex-column pl-0">
 		<div
 			:class="
 				'interior d-flex flex-column flex-fill justify-content-between' +
