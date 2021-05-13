@@ -11,15 +11,15 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
-    "core-js": "^3.12.0",
-    "kwesforms": "^2.1.1",
+    "core-js": "^3.12.1",
+    "kwesforms": "^2.1.2",
     "lodash": "^4.17.21",
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.12",
-    "@vue/cli-plugin-eslint": "^4.5.12",
-    "@vue/cli-service": "^4.5.12",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-eslint": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
@@ -27,7 +27,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^1.19.1",
-    "sass": "^1.32.12",
+    "sass": "^1.32.13",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   }
