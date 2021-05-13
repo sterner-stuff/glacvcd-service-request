@@ -647,7 +647,7 @@ export default {
 				this.form_id,
 				"map_status",
 				'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
-				(value) => {
+				value => {
 					return value == "outside";
 				}
 			);
@@ -655,7 +655,7 @@ export default {
 				this.form_id,
 				"map_status",
 				"The address you entered is not specific enough. Please enter a complete address.",
-				(value) => {
+				value => {
 					return value == "vague";
 				}
 			);
@@ -663,7 +663,7 @@ export default {
 				this.form_id,
 				"WaterSource",
 				"Your selection is not a valid service request.",
-				(value) => {
+				value => {
 					return ["Bees", "Rodents", "Fire Ants"].includes(value);
 				}
 			);
@@ -746,10 +746,12 @@ export default {
 			data.Images = base64Images.join(",");
 
 			axios.post(this.endpoint, data, {}).then(
-				(response) => {
+				response => {
 					console.log(response);
+					window.location.href =
+						"https://glacvcd.specialdistrict.org/thank-you-for-submitting-a-service-request";
 				},
-				(error) => {
+				error => {
 					console.log(error);
 				}
 			);
@@ -760,7 +762,7 @@ export default {
 				const reader = new FileReader();
 				reader.readAsDataURL(file);
 				reader.onload = () => resolve(reader.result);
-				reader.onerror = (error) => reject(error);
+				reader.onerror = error => reject(error);
 			});
 		},
 
