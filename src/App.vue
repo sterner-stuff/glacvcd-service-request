@@ -643,7 +643,7 @@ export default {
 	mounted() {
 		var vm = this;
 		kwesforms.init({
-			onReady: () => {
+			onReady() {
 				kwesforms.setCustomRule(
 					vm.form_id,
 					"map_status",
@@ -676,6 +676,7 @@ export default {
 		});
 
 		this.$refs.form.addEventListener("kwSubmitted", () => {
+			// e.preventDefault();
 			this.submit();
 		});
 	},
