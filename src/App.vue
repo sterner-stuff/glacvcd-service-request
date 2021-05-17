@@ -641,37 +641,38 @@ export default {
 		};
 	},
 	mounted() {
-		kwesforms.init();
-		setTimeout(() => {
-			console.log(this.form_id);
-			kwesforms.setCustomRule(
-				this.form_id,
-				"map_status",
-				'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
-				value => {
-					console.log('testing status a');
-					return value == "outside";
-				}
-			);
-			kwesforms.setCustomRule(
-				this.form_id,
-				"map_status",
-				"The address you entered is not specific enough. Please enter a complete address.",
-				value => {
-					console.log('testing status b');
-					return value == "vague";
-				}
-			);
-			kwesforms.setCustomRule(
-				this.form_id,
-				"WaterSource",
-				"Your selection is not a valid service request.",
-				value => {
-					console.log(value);
-					return ["Bees", "Rodents", "Fire Ants"].includes(value);
-				}
-			);
-		}, 200);
+		var vm = this;
+		kwesforms.init({
+			onReady: () => {
+				kwesforms.setCustomRule(
+					vm.form_id,
+					"map_status",
+					'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
+					value => {
+						console.log('testing status a');
+						return value == "outside";
+					}
+				);
+				kwesforms.setCustomRule(
+					vm.form_id,
+					"map_status",
+					"The address you entered is not specific enough. Please enter a complete address.",
+					value => {
+						console.log('testing status b');
+						return value == "vague";
+					}
+				);
+				kwesforms.setCustomRule(
+					vm.form_id,
+					"WaterSource",
+					"Your selection is not a valid service request.",
+					value => {
+						console.log(value);
+						return ["Bees", "Rodents", "Fire Ants"].includes(value);
+					}
+				);
+			},
+		});
 
 		this.$refs.form.addEventListener("kwMultistepNextClicked", () => {
 			this.$refs.address_verifier.refresh();
