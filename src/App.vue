@@ -649,7 +649,6 @@ export default {
 					"map_status",
 					'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
 					value => {
-						console.log('testing status a');
 						return value == "outside";
 					}
 				);
@@ -658,7 +657,6 @@ export default {
 					"map_status",
 					"The address you entered is not specific enough. Please enter a complete address.",
 					value => {
-						console.log('testing status b');
 						return value == "vague";
 					}
 				);
@@ -667,7 +665,6 @@ export default {
 					"WaterSource",
 					"Your selection is not a valid service request.",
 					value => {
-						console.log(value);
 						return ["Bees", "Rodents", "Fire Ants"].includes(value);
 					}
 				);
