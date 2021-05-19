@@ -24,7 +24,7 @@
 						Submitting a Service Request? Here’s what to expect.
 					</h2>
 					<div style="margin:15px 0;max-width:560px;">
-						<div class="embed-responsive embed-responsive-16by9">
+						<div class="embed-responsive embed-responsive-16by9" style="height:auto;">
 							<iframe
 								src="https://www.youtube.com/embed/bOQ_cyGos50"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
