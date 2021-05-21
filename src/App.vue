@@ -15,7 +15,7 @@
 						COVID-19 Note: Please be advised the District performs
 						property inspections on a case-by-case basis and will be
 						conducted contact-free with the resident.
-						<a href="https://www.glacvcd.org/"
+						<a href="https://www.glacvcd.org/our-response-to-covid-19"
 							><strong>Read More >></strong></a
 						>
 					</b-alert>
@@ -98,7 +98,7 @@
 						sources and solutions, visit our
 						<strong
 							><a
-								href="https://www.glacvcd.org/resources/diy-mosquito-solutions/"
+								href="https://www.glacvcd.org/do-it-yourself-solutions-for-mosquito-problems"
 								>Do-It-Yourself Mosquito Solutions Resource
 								Page.&nbsp;</a
 							></strong
@@ -110,7 +110,7 @@
 						bites and mosquito-transmitted diseases.
 						<strong
 							><a
-								href="https://www.glacvcd.org/resources/repellent-information/"
+								href="https://www.glacvcd.org/repellent-information"
 								>Learn which ingredients are recommended by the
 								Centers for Disease Control and
 								Prevention.&nbsp;</a
@@ -123,7 +123,7 @@
 						activity in your area, and share with your community.
 						Follow us on social media or&nbsp;sign up for our
 						<a
-							href="https://www.glacvcd.org/news-updates/newsletter-email-alert-form/"
+							href="https://www.glacvcd.org/subscribe-to-our-mailing-list"
 							><strong>E-Alerts</strong></a
 						>.
 					</p>
@@ -138,7 +138,7 @@
 						COVID-19 Note:&nbsp;&nbsp;Please be advised the District
 						performs property inspections on a case-by-case basis
 						and will be conducted contact-free with the resident.
-						<a href="https://www.glacvcd.org/"
+						<a href="https://www.glacvcd.org/our-response-to-covid-19"
 							><strong>Read More &gt;&gt;</strong></a
 						>
 					</b-alert>
@@ -270,8 +270,8 @@
 											inch big. If your pest is bigger,
 											you're probably dealing with a
 											different vector.
-											<a href="#"
-												>Check out this brochure</a
+											<a href="https://www.glacvcd.org/mosquitoes"
+												>Check out this page</a
 											>
 											for help identifying your pest.
 										</p>
@@ -295,7 +295,7 @@
 											Black flies are common within 1 mile
 											of the LA River.
 											<a
-												href="https://www.glacvcd.org/black-flies/"
+												href="https://www.glacvcd.org/other-vectors-and-insects"
 												target="_blank"
 												>Please visit our black flies
 												guide</a
@@ -317,7 +317,7 @@
 											can often be self-mitigated. Check
 											out
 											<a
-												href="https://www.glacvcd.org/resources/diy-mosquito-solutions/"
+												href="https://www.glacvcd.org/do-it-yourself-solutions-for-mosquito-problems"
 												>these resources for preventing,
 												removing, or treating standing
 												water on your property</a
@@ -363,7 +363,7 @@
 											GLACVCD does not respond to rodents.
 											Instead, contact the
 											<a
-												href="LA County Department of Health Services, Vector Management Programhttp://www.publichealth.lacounty.gov/eh/SSE/Vector_Management/vmvcontrol.htm"
+												href="http://www.publichealth.lacounty.gov/eh/SSE/Vector_Management/vmvcontrol.htm"
 												>LA County Department of Health
 												Services, Vector Management
 												Program</a
