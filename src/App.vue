@@ -15,7 +15,8 @@
 						COVID-19 Note: Please be advised the District performs
 						property inspections on a case-by-case basis and will be
 						conducted contact-free with the resident.
-						<a href="https://www.glacvcd.org/our-response-to-covid-19"
+						<a
+							href="https://www.glacvcd.org/our-response-to-covid-19"
 							><strong>Read More >></strong></a
 						>
 					</b-alert>
@@ -138,7 +139,8 @@
 						COVID-19 Note:&nbsp;&nbsp;Please be advised the District
 						performs property inspections on a case-by-case basis
 						and will be conducted contact-free with the resident.
-						<a href="https://www.glacvcd.org/our-response-to-covid-19"
+						<a
+							href="https://www.glacvcd.org/our-response-to-covid-19"
 							><strong>Read More &gt;&gt;</strong></a
 						>
 					</b-alert>
@@ -270,7 +272,8 @@
 											inch big. If your pest is bigger,
 											you're probably dealing with a
 											different vector.
-											<a href="https://www.glacvcd.org/mosquitoes"
+											<a
+												href="https://www.glacvcd.org/mosquitoes"
 												>Check out this page</a
 											>
 											for help identifying your pest.
@@ -752,13 +755,31 @@ export default {
 			data.Images = base64Images.join(",");
 
 			axios.post(this.endpoint, data, {}).then(
-				response => {
-					console.log(response);
+				() => {
 					window.location.href =
-						"https://glacvcd.specialdistrict.org/thank-you-for-submitting-a-service-request";
+						"https://glacvcd.org/thank-you-for-submitting-a-service-request";
 				},
 				error => {
-					console.log(error);
+					const options = {
+						username: "kwesbot",
+						text: "API fail: " + JSON.stringify(error),
+					};
+
+					axios
+						.post(
+							"https://hooks.slack.com/services/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",
+							JSON.stringify(options)
+						)
+						.then(() => {
+							//
+						})
+						.catch(error => {
+							console.log(error);
+						});
+
+					alert(
+						"Your submission failed for an unknown reason. Please contact GLACVCD at 562-944-9656 to ensure service."
+					);
 				}
 			);
 		},
