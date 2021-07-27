@@ -761,13 +761,12 @@ export default {
 				},
 				error => {
 					const options = {
-						username: "kwesbot",
-						text: "API fail: " + JSON.stringify(error),
+						value1: JSON.stringify(error),
 					};
 
 					axios
 						.post(
-							"https://hooks.slack.com/services/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",
+							"https://maker.ifttt.com/trigger/glacvcd_error/with/key/tD8Zx_Y3NghBPLvw-Hlv367xD1eKhDfXfLa6G0Z0XC",
 							JSON.stringify(options)
 						)
 						.then(() => {
