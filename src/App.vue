@@ -422,20 +422,15 @@
 						<b-form-input
 							name="CaseNumber"
 							v-model="form.CaseNumber"
+							rules="max:50"
 						></b-form-input>
 						<b-form-text>If you've been assigned one</b-form-text>
 					</input-group>
 					<input-group label="Name">
 						<b-form-input
 							name="Name"
-							rules="required"
+							rules="required|max:100"
 							v-model="form.Name"
-						></b-form-input>
-					</input-group>
-					<input-group label="Company">
-						<b-form-input
-							name="company"
-							v-model="form.company"
 						></b-form-input>
 					</input-group>
 					<input-group label="Email">
@@ -443,12 +438,13 @@
 							name="Email"
 							v-model="form.Email"
 							type="email"
+							rules="max:200"
 						></b-form-input>
 					</input-group>
 					<input-group label="Phone">
 						<b-form-input
 							name="Phone"
-							rules="required"
+							rules="required|max:100"
 							v-model="form.Phone"
 							type="tel"
 						></b-form-input>
@@ -469,6 +465,7 @@
 						<b-form-input
 							name="RefferalSourceOther"
 							v-model="form.RefferalSourceOther"
+							rules="max:500"
 						></b-form-input>
 					</input-group>
 				</Step>
@@ -483,6 +480,7 @@
 						<b-form-input
 							name="BuildingInfo"
 							v-model="form.BuildingInfo"
+							rules="max:100"
 						></b-form-input>
 						<b-form-text
 							>Building, apartment, or suite number,
@@ -493,6 +491,7 @@
 						<b-form-input
 							name="GateCodes"
 							v-model="form.GateCodes"
+							rules="max:2000"
 						></b-form-input>
 						<b-form-text>Gate codes, entry codes, etc.</b-form-text>
 					</input-group>
@@ -500,6 +499,7 @@
 						<b-form-input
 							name="NearestCrossSt"
 							v-model="form.NearestCrossSt"
+							rules="max:500"
 						></b-form-input>
 					</input-group>
 					<input-group label="Do you live at this address?">
@@ -614,7 +614,6 @@ export default {
 				Comments: "",
 				CaseNumber: "",
 				Name: "",
-				company: "",
 				Email: "",
 				Phone: "",
 				RefferalSource: [],
@@ -695,7 +694,6 @@ export default {
 				"Comments",
 				"CaseNumber",
 				"Name",
-				"company",
 				"Email",
 				"Phone",
 				"RefferalSource",
