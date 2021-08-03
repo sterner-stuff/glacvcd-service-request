@@ -5,7 +5,7 @@
 			style="position:absolute;left:-9999px;"
 			name="map_status"
 			ref="map_status"
-			rules="required"
+			disabled
 			:value="this.map_status"
 		/>
 
@@ -16,6 +16,7 @@
 			type="text"
 			aria-invalid="false"
 			ref="address"
+			@input="clear"
 			v-model="pretty_address"
 		/>
 		<div ref="map" class="map" style="margin-top:1em;"></div>
@@ -152,8 +153,7 @@ export default {
 			this.$emit("input", place);
 
 			this.$nextTick(() => {
-				this.$refs.map_status.focus();
-				this.$refs.map_status.blur();
+				this.triggerMapStatusValidation();
 			});
 		},
 
@@ -176,6 +176,17 @@ export default {
 				polygon.setMap(this.map);
 				this.polygons[zone] = polygon;
 			}
+		},
+
+		clear() {
+			this.map_status = "";
+		},
+
+		triggerMapStatusValidation() {
+			this.$refs.map_status.removeAttribute("disabled");
+			this.$refs.map_status.focus();
+			this.$refs.map_status.blur();
+			this.$refs.map_status.setAttribute("disabled", "disabled");
 		},
 
 		refresh() {

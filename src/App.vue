@@ -667,6 +667,22 @@ export default {
 				);
 				kwesforms.setCustomRule(
 					vm.form_id,
+					"map_status",
+					"Address required. Please use the auto-complete to locate the address.",
+					value => {
+						return value == "";
+					}
+				);
+				kwesforms.setCustomRule(
+					vm.form_id,
+					"map_status",
+					"There's a problem with the address you've entered. Please use the auto-complete feature to select an address.",
+					value => {
+						return !["vague", "outside", "valid"].includes(value);
+					}
+				);
+				kwesforms.setCustomRule(
+					vm.form_id,
 					"WaterSource",
 					"Your selection is not a valid service request.",
 					value => {
@@ -676,7 +692,11 @@ export default {
 			},
 		});
 
-		this.$refs.form.addEventListener("kwMultistepNextClicked", () => {
+		this.$refs.form.addEventListener("kwMultistepNextSuccess", () => {
+			this.$refs.address_verifier.refresh();
+		});
+
+		this.$refs.form.addEventListener("kwMultistepPrevSuccess", () => {
 			this.$refs.address_verifier.refresh();
 		});
 
