@@ -531,13 +531,13 @@
 					<input-group label="Upload helpful images (optional)">
 						<b-form-file
 							name="Image1"
-							v-model="form.Image1"
+							@change="handleImage($event, 'image1')"
 							placeholder="Select file"
 							rules="image|max:4000"
 						></b-form-file>
 						<b-form-file
 							name="Image2"
-							v-model="form.Image2"
+							@change="handleImage($event, 'image2')"
 							placeholder="Select file"
 							rules="image|max:4000"
 							class="mt-2"
@@ -622,8 +622,8 @@ export default {
 				NearestCrossSt: "",
 				YourAddress: null,
 				Chickens: null,
-				Image1: null,
-				Image2: null,
+				image1: null,
+				image2: null,
 				AddressObject: {},
 			},
 			when_are_bites_occurring_options: [
@@ -766,8 +766,9 @@ export default {
 
 			let images = [this.form.Image1, this.form.Image2];
 			for (let index = 0; index < images; index++) {
-				const element = images[index];
-				base64Images.push(await this.base64File(element));
+				if (images[index] != null) {
+					base64Images.push(images[index]);
+				}
 			}
 
 			data.Images = base64Images.join(",");
@@ -801,13 +802,19 @@ export default {
 			);
 		},
 
-		base64File(file) {
-			return new Promise((resolve, reject) => {
-				const reader = new FileReader();
-				reader.readAsDataURL(file);
-				reader.onload = () => resolve(reader.result);
-				reader.onerror = error => reject(error);
-			});
+		handleImage(e, field) {
+			const image = e.dataTransfer.files[0];
+			this.storeBase64Image(image, field);
+		},
+
+		storeBase64Image(image, field) {
+			var _ = this;
+			const reader = new FileReader();
+			reader.onload = e => {
+				_.form[field] = e.target.result;
+			};
+
+			reader.readAsDataURL(image);
 		},
 
 		scrollToNext() {
