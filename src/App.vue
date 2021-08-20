@@ -652,7 +652,7 @@ export default {
 				kwesforms.setCustomRule(
 					vm.form_id,
 					"map_status",
-					'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/resources/helpful-links/">our resources page</a> for more details and helpful resources.',
+					'The address you entered is not in our service area. Please visit <a style="text-decoration:underline;" href="https://www.glacvcd.org/links-to-agencies-to-help-with-vectors">this resource page</a> to find your local vector control district.',
 					value => {
 						return value == "outside";
 					}
