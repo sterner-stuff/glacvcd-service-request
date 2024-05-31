@@ -20,7 +20,7 @@ A Vue-driven web form designed to be embeded on the GLACVCD website and other pl
 ### Setup
 
 1. Clone this repository
-2. Run `npm ci` to install dependencies. Use `npm update` if you need to update dependencies for some reason.
+2. Run `npm ci` to install dependencies. Use `npm update` if you need to update dependencies.
 
 ## Project Development
 

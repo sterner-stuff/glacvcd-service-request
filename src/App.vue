@@ -10,7 +10,7 @@
 			no-reload
 		>
 			<div class="kw-multistep">
-				<Step heading="Intro">
+				<G-Step heading="Intro">
 					<b-alert variant="danger" show>
 						COVID-19 Note: Please be advised the District performs
 						property inspections on a case-by-case basis and will be
@@ -155,8 +155,8 @@
 						remain confidential and will not be made public or
 						shared with any other party as permitted by law.
 					</p>
-				</Step>
-				<Step heading="Service Request Type">
+				</G-Step>
+				<G-Step heading="Service Request Type">
 					<!--<b-form-group
 						data-kw-group
 						rules="not_regex:/^(Bees|Rodents)/"
@@ -254,7 +254,7 @@
 									></image-radio-button>
 								</div>
 							</div>
-							<alert
+							<g-alert
 								v-show="form.WaterSource == 'Mosquitoes'"
 								class="mt-4"
 							>
@@ -280,8 +280,8 @@
 										</p>
 									</div>
 								</div>
-							</alert>
-							<alert
+							</g-alert>
+							<g-alert
 								v-show="form.WaterSource == 'Black Flies'"
 								class="mt-4"
 							>
@@ -308,8 +308,8 @@
 										</p>
 									</div>
 								</div>
-							</alert>
-							<alert
+							</g-alert>
+							<g-alert
 								v-show="form.WaterSource == 'Standing Water'"
 								class="mt-4"
 							>
@@ -329,15 +329,15 @@
 										</p>
 									</div>
 								</div>
-							</alert>
-							<alert
+							</g-alert>
+							<g-alert
 								v-show="form.WaterSource == 'Bees'"
 								class="mt-4"
 								variant="danger"
 							>
-								<div class="row">
+								<div class="row align-items-center">
 									<div class="col">
-										<p>
+										<p class="mb-0">
 											GLACVCD does not respond to bees.
 											You should contact a private pest
 											control company, or the
@@ -354,15 +354,15 @@
 										</p>
 									</div>
 								</div>
-							</alert>
-							<alert
+							</g-alert>
+							<g-alert
 								v-show="form.WaterSource == 'Rodents'"
 								class="mt-4"
 								variant="danger"
 							>
-								<div class="row">
+								<div class="row align-items-center">
 									<div class="col">
-										<p>
+										<p class="mb-0">
 											GLACVCD does not respond to rodents.
 											Instead, contact the
 											<a
@@ -375,15 +375,15 @@
 										</p>
 									</div>
 								</div>
-							</alert>
-							<alert
+							</g-alert>
+							<g-alert
 								v-show="form.WaterSource == 'Fire Ants'"
 								class="mt-4"
 								variant="danger"
 							>
-								<div class="row">
+								<div class="row align-items-center">
 									<div class="col">
-										<p>
+										<p class="mb-0">
 											GLACVCD does not respond to
 											cockroaches, fire ants, or
 											run-of-the-mill houseflies. You
@@ -391,7 +391,7 @@
 										</p>
 									</div>
 								</div>
-							</alert>
+							</g-alert>
 						</b-form-radio-group>
 					</b-form-group>
 					<input-group
@@ -416,8 +416,8 @@
 							required
 						></b-form-textarea>
 					</input-group>
-				</Step>
-				<Step heading="Contact Information">
+				</G-Step>
+				<G-Step heading="Contact Information">
 					<input-group label="Case Number">
 						<b-form-input
 							name="CaseNumber"
@@ -468,8 +468,8 @@
 							rules="max:500"
 						></b-form-input>
 					</input-group>
-				</Step>
-				<Step heading="Location Information">
+				</G-Step>
+				<G-Step heading="Location Information">
 					<input-group label="Address to report">
 						<address-verifier
 							ref="address_verifier"
@@ -526,8 +526,8 @@
 							stacked
 						></b-form-radio-group>
 					</input-group>
-				</Step>
-				<Step heading="Images">
+				</G-Step>
+				<G-Step heading="Images">
 					<input-group label="Upload helpful images (optional)">
 						<b-form-file
 							name="Image1"
@@ -544,8 +544,8 @@
 						></b-form-file>
 						<b-form-text>Limit 2 images, 4MB each</b-form-text>
 					</input-group>
-				</Step>
-				<Step heading="Review & Submit">
+				</G-Step>
+				<G-Step heading="Review & Submit">
 					<p>
 						Greater Los Angeles County Vector Control Technicians
 						conduct site inspections on weekdays between 7am & 3pm
@@ -562,15 +562,15 @@
 						such disclosure. Your information will not be sold or
 						shared with other parties.
 					</p>
-				</Step>
+				</G-Step>
 			</div>
 		</form>
 	</div>
 </template>
 
 <script>
-import Step from "./components/Kwes/Step.vue";
-import Alert from "./components/Alert.vue";
+import GStep from "./components/Kwes/GStep.vue";
+import GAlert from "./components/GAlert.vue";
 import InputGroup from "./components/Form/InputGroup.vue";
 import ImageRadioButton from "./components/Form/ImageRadioButton.vue";
 import kwesforms from "kwesforms";
@@ -591,8 +591,8 @@ import { pick, isEmpty } from "lodash";
 export default {
 	name: "App",
 	components: {
-		Alert,
-		Step,
+		GAlert,
+		GStep,
 		ImageRadioButton,
 		InputGroup,
 		AddressVerifier,
@@ -686,6 +686,7 @@ export default {
 					"WaterSource",
 					"Your selection is not a valid service request.",
 					value => {
+						console.log(value);
 						return ["Bees", "Rodents", "Fire Ants"].includes(value);
 					}
 				);
