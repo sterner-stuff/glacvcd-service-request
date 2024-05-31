@@ -1,8 +1,8 @@
 module.exports = {
 	css: { extract: false },
-	devServer: {
-		host: "glacvcdsr.test",
-	},
+	// devServer: {
+	// 	host: "glacvcdsr.test",
+	// },
 	chainWebpack: config => {
 		if (config.plugins.has("extract-css")) {
 			const extractCSSPlugin = config.plugin("extract-css");

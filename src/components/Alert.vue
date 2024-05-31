@@ -1,7 +1,13 @@
 <template>
 	<b-alert :variant="variant" show>
-		<div class="alert-icon bg-primary">!</div>
-		<slot></slot>
+		<div class="row align-items-center">
+			<div class="col-auto">
+				<div class="alert-icon bg-primary">!</div>
+			</div>
+			<div class="col">
+				<slot></slot>
+			</div>
+		</div>
 	</b-alert>
 </template>
 <script>
@@ -29,8 +35,6 @@ export default {
 	height: 1.6em;
 	border-radius: 50%;
 	text-align: center;
-	float: left;
-	margin-right: 15px;
 	display: flex;
 	align-items: center;
 	justify-content: center;

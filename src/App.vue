@@ -335,9 +335,9 @@
 								class="mt-4"
 								variant="danger"
 							>
-								<div class="row">
+								<div class="row align-items-center">
 									<div class="col">
-										<p>
+										<p class="mb-0">
 											GLACVCD does not respond to bees.
 											You should contact a private pest
 											control company, or the
@@ -360,9 +360,9 @@
 								class="mt-4"
 								variant="danger"
 							>
-								<div class="row">
+								<div class="row align-items-center">
 									<div class="col">
-										<p>
+										<p class="mb-0">
 											GLACVCD does not respond to rodents.
 											Instead, contact the
 											<a
@@ -381,9 +381,9 @@
 								class="mt-4"
 								variant="danger"
 							>
-								<div class="row">
+								<div class="row align-items-center">
 									<div class="col">
-										<p>
+										<p class="mb-0">
 											GLACVCD does not respond to
 											cockroaches, fire ants, or
 											run-of-the-mill houseflies. You
@@ -686,6 +686,7 @@ export default {
 					"WaterSource",
 					"Your selection is not a valid service request.",
 					value => {
+						console.log(value);
 						return ["Bees", "Rodents", "Fire Ants"].includes(value);
 					}
 				);
