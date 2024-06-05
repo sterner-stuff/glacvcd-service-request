@@ -733,9 +733,8 @@ export default {
 					index < this.form.AddressObject.address_components.length;
 					index++
 				) {
-					const element = this.form.AddressObject.address_components[
-						index
-					];
+					const element =
+						this.form.AddressObject.address_components[index];
 					if (element["types"].includes("street_number")) {
 						street_address_parts[0] = element["short_name"];
 					} else if (element["types"].includes("route")) {
@@ -804,7 +803,7 @@ export default {
 		},
 
 		handleImage(e, field) {
-			const image = e.dataTransfer.files[0];
+			const image = e.target.files[0];
 			this.storeBase64Image(image, field);
 		},
 

@@ -41,8 +41,7 @@ export default {
 			autocomplete: false,
 			zones: zones,
 			polygons: {},
-			icon:
-				"https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png",
+			icon: "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png",
 			valid: false,
 			pretty_address: "",
 			map_status: "",
@@ -60,6 +59,7 @@ export default {
 				center: new this.google.maps.LatLng(33.93602559, -118.06459665),
 				zoom: 10,
 				mapTypeId: this.google.maps.MapTypeId.ROADMAP,
+				mapId: "glacvcd_sr_map",
 				disableDefaultUI: true,
 			});
 
@@ -99,9 +99,12 @@ export default {
 			if (typeof place.geometry == "undefined") return;
 
 			let bounds = new this.google.maps.LatLngBounds();
-			this.marker = new this.google.maps.Marker({
+			const iconImage = document.createElement("img");
+			iconImage.src = this.icon;
+
+			this.marker = new this.google.maps.marker.AdvancedMarkerElement({
 				map: this.map,
-				icon: this.icon,
+				content: iconImage,
 				position: place.geometry.location,
 				draggable: false,
 			});
